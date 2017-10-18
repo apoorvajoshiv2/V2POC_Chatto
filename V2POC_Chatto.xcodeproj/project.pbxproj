@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E504257D1F975739007B50B1 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E504257C1F975739007B50B1 /* ChatViewController.swift */; };
 		E559FB781F972EC600D9D186 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559FB771F972EC600D9D186 /* AppDelegate.swift */; };
 		E559FB7A1F972EC600D9D186 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559FB791F972EC600D9D186 /* ViewController.swift */; };
 		E559FB7D1F972EC600D9D186 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E559FB7B1F972EC600D9D186 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E504257C1F975739007B50B1 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		E559FB741F972EC600D9D186 /* V2POC_Chatto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = V2POC_Chatto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E559FB771F972EC600D9D186 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E559FB791F972EC600D9D186 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			children = (
 				E559FB771F972EC600D9D186 /* AppDelegate.swift */,
 				E559FB791F972EC600D9D186 /* ViewController.swift */,
+				E504257C1F975739007B50B1 /* ChatViewController.swift */,
 				E559FB7B1F972EC600D9D186 /* Main.storyboard */,
 				E559FB7E1F972EC600D9D186 /* Assets.xcassets */,
 				E559FB801F972EC600D9D186 /* LaunchScreen.storyboard */,
@@ -157,7 +160,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Chatto.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ChattoAdditions.framework\n",
+				"$(SRCROOT)/Carthage/Build/iOS/ChattoAdditions.framework",
 			);
 			outputPaths = (
 			);
@@ -173,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E559FB7A1F972EC600D9D186 /* ViewController.swift in Sources */,
+				E504257D1F975739007B50B1 /* ChatViewController.swift in Sources */,
 				E559FB781F972EC600D9D186 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,7 +244,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -285,7 +289,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
