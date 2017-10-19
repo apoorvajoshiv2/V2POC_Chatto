@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00C8F1C81F987BD3008D9C8F /* Chatto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E559FC871F97366A00D9D186 /* Chatto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		00C8F1C91F987BD3008D9C8F /* ChattoAdditions.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E559FC881F97366A00D9D186 /* ChattoAdditions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E504257D1F975739007B50B1 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E504257C1F975739007B50B1 /* ChatViewController.swift */; };
 		E559FB781F972EC600D9D186 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559FB771F972EC600D9D186 /* AppDelegate.swift */; };
 		E559FB7A1F972EC600D9D186 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559FB791F972EC600D9D186 /* ViewController.swift */; };
@@ -16,6 +18,20 @@
 		E559FC891F97366B00D9D186 /* Chatto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E559FC871F97366A00D9D186 /* Chatto.framework */; };
 		E559FC8A1F97366B00D9D186 /* ChattoAdditions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E559FC881F97366A00D9D186 /* ChattoAdditions.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		00C8F1C71F987BBB008D9C8F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				00C8F1C81F987BD3008D9C8F /* Chatto.framework in CopyFiles */,
+				00C8F1C91F987BD3008D9C8F /* ChattoAdditions.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E504257C1F975739007B50B1 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +110,7 @@
 				E559FB711F972EC600D9D186 /* Frameworks */,
 				E559FB721F972EC600D9D186 /* Resources */,
 				E559FC8B1F9736AF00D9D186 /* ShellScript */,
+				00C8F1C71F987BBB008D9C8F /* CopyFiles */,
 			);
 			buildRules = (
 			);
