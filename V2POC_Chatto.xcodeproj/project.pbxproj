@@ -23,6 +23,15 @@
 		00CFEA391F9E133600DFE2DE /* SendingStatusCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00CFEA361F9E133600DFE2DE /* SendingStatusCollectionViewCell.xib */; };
 		00CFEA3A1F9E133600DFE2DE /* SendingStatusPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CFEA371F9E133600DFE2DE /* SendingStatusPresenter.swift */; };
 		00CFEA3C1F9F106700DFE2DE /* V2StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CFEA3B1F9F106700DFE2DE /* V2StartViewController.swift */; };
+		00CFEA431F9F667900DFE2DE /* Message+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CFEA411F9F667900DFE2DE /* Message+CoreDataClass.swift */; };
+		00CFEA441F9F667900DFE2DE /* Message+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CFEA421F9F667900DFE2DE /* Message+CoreDataProperties.swift */; };
+		00CFEA491F9F66A000DFE2DE /* Conversation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CFEA451F9F66A000DFE2DE /* Conversation+CoreDataClass.swift */; };
+		00CFEA4A1F9F66A000DFE2DE /* Conversation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CFEA461F9F66A000DFE2DE /* Conversation+CoreDataProperties.swift */; };
+		00CFEA4B1F9F66A000DFE2DE /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CFEA471F9F66A000DFE2DE /* User+CoreDataClass.swift */; };
+		00CFEA4C1F9F66A000DFE2DE /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CFEA481F9F66A000DFE2DE /* User+CoreDataProperties.swift */; };
+		00CFEA4F1F9F66EA00DFE2DE /* Media+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CFEA4D1F9F66EA00DFE2DE /* Media+CoreDataClass.swift */; };
+		00CFEA501F9F66EA00DFE2DE /* Media+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CFEA4E1F9F66EA00DFE2DE /* Media+CoreDataProperties.swift */; };
+		00CFEA541F9F691B00DFE2DE /* FNS-Health.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00CFEA511F9F691B00DFE2DE /* FNS-Health.xcdatamodeld */; };
 		E504257D1F975739007B50B1 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E504257C1F975739007B50B1 /* ChatViewController.swift */; };
 		E559FB781F972EC600D9D186 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559FB771F972EC600D9D186 /* AppDelegate.swift */; };
 		E559FB7A1F972EC600D9D186 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559FB791F972EC600D9D186 /* ViewController.swift */; };
@@ -62,6 +71,16 @@
 		00CFEA361F9E133600DFE2DE /* SendingStatusCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendingStatusCollectionViewCell.xib; sourceTree = "<group>"; };
 		00CFEA371F9E133600DFE2DE /* SendingStatusPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendingStatusPresenter.swift; sourceTree = "<group>"; };
 		00CFEA3B1F9F106700DFE2DE /* V2StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V2StartViewController.swift; sourceTree = "<group>"; };
+		00CFEA411F9F667900DFE2DE /* Message+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Message+CoreDataClass.swift"; path = "MessageModule/Message+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		00CFEA421F9F667900DFE2DE /* Message+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Message+CoreDataProperties.swift"; path = "MessageModule/Message+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		00CFEA451F9F66A000DFE2DE /* Conversation+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Conversation+CoreDataClass.swift"; path = "MessageModule/Conversation+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		00CFEA461F9F66A000DFE2DE /* Conversation+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Conversation+CoreDataProperties.swift"; path = "MessageModule/Conversation+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		00CFEA471F9F66A000DFE2DE /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "MessageModule/User+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		00CFEA481F9F66A000DFE2DE /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "MessageModule/User+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		00CFEA4D1F9F66EA00DFE2DE /* Media+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Media+CoreDataClass.swift"; path = "MessageModule/Media+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		00CFEA4E1F9F66EA00DFE2DE /* Media+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Media+CoreDataProperties.swift"; path = "MessageModule/Media+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		00CFEA521F9F691B00DFE2DE /* 151902321.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 151902321.xcdatamodel; sourceTree = "<group>"; };
+		00CFEA531F9F691B00DFE2DE /* FNS-Health.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "FNS-Health.xcdatamodel"; sourceTree = "<group>"; };
 		E504257C1F975739007B50B1 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		E559FB741F972EC600D9D186 /* V2POC_Chatto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = V2POC_Chatto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E559FB771F972EC600D9D186 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +150,22 @@
 			name = SendingStatus;
 			sourceTree = "<group>";
 		};
+		00CFEA3E1F9F5D6500DFE2DE /* MessageModule */ = {
+			isa = PBXGroup;
+			children = (
+				00CFEA511F9F691B00DFE2DE /* FNS-Health.xcdatamodeld */,
+				00CFEA4D1F9F66EA00DFE2DE /* Media+CoreDataClass.swift */,
+				00CFEA4E1F9F66EA00DFE2DE /* Media+CoreDataProperties.swift */,
+				00CFEA451F9F66A000DFE2DE /* Conversation+CoreDataClass.swift */,
+				00CFEA461F9F66A000DFE2DE /* Conversation+CoreDataProperties.swift */,
+				00CFEA471F9F66A000DFE2DE /* User+CoreDataClass.swift */,
+				00CFEA481F9F66A000DFE2DE /* User+CoreDataProperties.swift */,
+				00CFEA411F9F667900DFE2DE /* Message+CoreDataClass.swift */,
+				00CFEA421F9F667900DFE2DE /* Message+CoreDataProperties.swift */,
+			);
+			name = MessageModule;
+			sourceTree = "<group>";
+		};
 		E559FB6B1F972EC500D9D186 = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +186,7 @@
 		E559FB761F972EC600D9D186 /* V2POC_Chatto */ = {
 			isa = PBXGroup;
 			children = (
+				00CFEA3E1F9F5D6500DFE2DE /* MessageModule */,
 				00CFEA221F9DEA4C00DFE2DE /* Text Messages */,
 				E559FB771F972EC600D9D186 /* AppDelegate.swift */,
 				E559FB791F972EC600D9D186 /* ViewController.swift */,
@@ -267,22 +303,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00CFEA4F1F9F66EA00DFE2DE /* Media+CoreDataClass.swift in Sources */,
 				00CFEA311F9DFD6600DFE2DE /* BaseMessageCollectionViewCellAvatarStyle.swift in Sources */,
+				00CFEA4A1F9F66A000DFE2DE /* Conversation+CoreDataProperties.swift in Sources */,
 				00CFEA211F9DEA3300DFE2DE /* DemoTextMessageViewModel.swift in Sources */,
 				00CFEA2B1F9DEF9100DFE2DE /* FakeDataSource.swift in Sources */,
 				00CFEA331F9E12C400DFE2DE /* ChatItemsDemoDecorator.swift in Sources */,
 				00CFEA3A1F9E133600DFE2DE /* SendingStatusPresenter.swift in Sources */,
 				00CFEA1F1F9DEA3300DFE2DE /* DemoTextMessageHandler.swift in Sources */,
+				00CFEA4B1F9F66A000DFE2DE /* User+CoreDataClass.swift in Sources */,
 				E559FB7A1F972EC600D9D186 /* ViewController.swift in Sources */,
+				00CFEA491F9F66A000DFE2DE /* Conversation+CoreDataClass.swift in Sources */,
 				00CFEA251F9DEAD800DFE2DE /* BaseMessageHandler.swift in Sources */,
+				00CFEA431F9F667900DFE2DE /* Message+CoreDataClass.swift in Sources */,
 				00CFEA381F9E133600DFE2DE /* SendingStatusCollectionViewCell.swift in Sources */,
+				00CFEA541F9F691B00DFE2DE /* FNS-Health.xcdatamodeld in Sources */,
 				00CFEA2E1F9DEF9100DFE2DE /* SlidingDatasSource.swift in Sources */,
+				00CFEA501F9F66EA00DFE2DE /* Media+CoreDataProperties.swift in Sources */,
 				E504257D1F975739007B50B1 /* ChatViewController.swift in Sources */,
 				00CFEA3C1F9F106700DFE2DE /* V2StartViewController.swift in Sources */,
 				00CFEA201F9DEA3300DFE2DE /* DemoTextMessageModel.swift in Sources */,
 				00CFEA2D1F9DEF9100DFE2DE /* FakeMessageSender.swift in Sources */,
+				00CFEA4C1F9F66A000DFE2DE /* User+CoreDataProperties.swift in Sources */,
 				E559FB781F972EC600D9D186 /* AppDelegate.swift in Sources */,
 				00CFEA2C1F9DEF9100DFE2DE /* FakeMessageFactory.swift in Sources */,
+				00CFEA441F9F667900DFE2DE /* Message+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,7 +394,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -394,7 +439,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -459,6 +504,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		00CFEA511F9F691B00DFE2DE /* FNS-Health.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				00CFEA521F9F691B00DFE2DE /* 151902321.xcdatamodel */,
+				00CFEA531F9F691B00DFE2DE /* FNS-Health.xcdatamodel */,
+			);
+			currentVersion = 00CFEA521F9F691B00DFE2DE /* 151902321.xcdatamodel */;
+			path = "FNS-Health.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E559FB6C1F972EC600D9D186 /* Project object */;
 }
