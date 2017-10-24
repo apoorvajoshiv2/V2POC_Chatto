@@ -14,12 +14,29 @@ import ChattoAdditions
 class ChatViewController: BaseChatViewController {
     
     var chatInputPresenter: BasicChatInputBarPresenter!
-    var dataSource: ChatDataSourceProtocol!
-//    var dataSource: ChatDataSource! {
-//        didSet {
-//            self.chatDataSource = self.dataSource
-//        }
-//    }
+    
+    var dataSource: FakeDataSource! {
+        didSet {
+            self.chatDataSource = self.dataSource
+        }
+    }
+    var messageSender: FakeMessageSender!
+    lazy private var baseMessageHandler: BaseMessageHandler = {
+        return BaseMessageHandler(messageSender: self.messageSender)
+    }()
+    
+    override func loadView() {
+        super.loadView()
+        let pageSize = 50
+        self.dataSource = FakeDataSource(messages: TutorialMessageFactory.createMessages(), pageSize: pageSize)
+        
+        self.messageSender = self.dataSource.messageSender
+        super.chatItemsDecorator = ChatItemsDemoDecorator()
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "Chatto Default Demo"
+    }
     
     override func createChatInputView() -> UIView {
         let chatInputView = ChatInputBar.loadNib()
@@ -41,7 +58,7 @@ class ChatViewController: BaseChatViewController {
     private func createTextInputItem() -> TextChatInputItem {
         let item = TextChatInputItem()
         item.textInputHandler = { [weak self] text in
-//            self?.dataSource.addTextMessage(text)
+            self?.dataSource.addTextMessage(text)
         }
         return item
     }
@@ -52,6 +69,26 @@ class ChatViewController: BaseChatViewController {
 //            self?.dataSource.addPhotoMessage(image)
         }
         return item
+    }
+    
+    override func createPresenterBuilders() -> [ChatItemType: [ChatItemPresenterBuilderProtocol]] {
+        let textMessagePresenter = TextMessagePresenterBuilder(
+            viewModelBuilder: DemoTextMessageViewModelBuilder(),
+            interactionHandler: DemoTextMessageHandler(baseHandler: self.baseMessageHandler)
+        )
+        textMessagePresenter.baseMessageStyle = BaseMessageCollectionViewCellAvatarStyle()
+        
+        return [
+            DemoTextMessageModel.chatItemType: [
+                textMessagePresenter
+            ],
+            SendingStatusModel.chatItemType: [SendingStatusPresenterBuilder()]
+        ]
+    }
+    
+    @objc
+    private func addRandomIncomingMessage() {
+        self.dataSource.addRandomIncomingMessage()
     }
     
 }
