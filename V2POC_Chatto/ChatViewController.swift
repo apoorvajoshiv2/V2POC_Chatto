@@ -32,6 +32,26 @@ class ChatViewController: BaseChatViewController {
         
         self.messageSender = self.dataSource.messageSender
         super.chatItemsDecorator = ChatItemsDemoDecorator()
+        
+        
+        
+        let messageFactory = MockMessageFactory.sharedInstance
+        messageFactory.initialize()
+        
+//        if (MockMessageFactory.sharedInstance.isDatabaseFilled){
+//        
+//            MockMessageFactory.sharedInstance.insertMessagesInDataBase()
+//        }
+//        else {
+//            MockMessageFactory.sharedInstance.insertMessagesInDataBase()
+//        }
+//        
+//        let allMessageData =  MockMessageFactory.sharedInstance.getAllMessages()
+//        
+//        print(allMessageData)
+
+        
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
