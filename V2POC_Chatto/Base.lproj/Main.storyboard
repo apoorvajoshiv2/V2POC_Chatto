@@ -28,6 +28,24 @@
             </objects>
             <point key="canvasLocation" x="-193" y="-1852"/>
         </scene>
+        <!--Conversation View Controller-->
+        <scene sceneID="FPy-9U-F9B">
+            <objects>
+                <viewController id="P7B-Er-H9K" customClass="ConversationViewController" customModule="V2POC_Chatto" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QXd-P0-neI"/>
+                        <viewControllerLayoutGuide type="bottom" id="bDg-tB-EXE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nZI-lu-Tvv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LTK-lP-h3o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-194" y="-1180"/>
+        </scene>
         <!--V2 POC-->
         <scene sceneID="B1u-jJ-GsR">
             <objects>
@@ -75,6 +93,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="P7B-Er-H9K" kind="show" id="f5i-9c-9xs"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>

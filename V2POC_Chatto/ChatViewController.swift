@@ -37,21 +37,10 @@ class ChatViewController: BaseChatViewController {
         
         let messageFactory = MockMessageFactory.sharedInstance
         messageFactory.initialize()
-        
-//        if (MockMessageFactory.sharedInstance.isDatabaseFilled){
-//        
-//            MockMessageFactory.sharedInstance.insertMessagesInDataBase()
-//        }
-//        else {
-//            MockMessageFactory.sharedInstance.insertMessagesInDataBase()
-//        }
-//        
-//        let allMessageData =  MockMessageFactory.sharedInstance.getAllMessages()
-//        
-//        print(allMessageData)
-
-        
-        
+        messageFactory.insertMessagesInDataBase()
+        let allMessageData =  messageFactory.getAllMessages()
+        print(allMessageData)
+    
     }
     override func viewDidLoad() {
         super.viewDidLoad()

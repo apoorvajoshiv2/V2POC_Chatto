@@ -35,6 +35,7 @@
 		00CFEA581FA062DF00DFE2DE /* MessageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CFEA571FA062DF00DFE2DE /* MessageDataSource.swift */; };
 		00CFEA5A1FA0672300DFE2DE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CFEA591FA0672300DFE2DE /* CoreData.framework */; };
 		00CFEA5C1FA08D3C00DFE2DE /* MockMessageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CFEA5B1FA08D3C00DFE2DE /* MockMessageFactory.swift */; };
+		00CFEA5F1FA1AFC200DFE2DE /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CFEA5E1FA1AFC200DFE2DE /* ConversationViewController.swift */; };
 		E504257D1F975739007B50B1 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E504257C1F975739007B50B1 /* ChatViewController.swift */; };
 		E559FB781F972EC600D9D186 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559FB771F972EC600D9D186 /* AppDelegate.swift */; };
 		E559FB7A1F972EC600D9D186 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559FB791F972EC600D9D186 /* ViewController.swift */; };
@@ -87,6 +88,7 @@
 		00CFEA571FA062DF00DFE2DE /* MessageDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageDataSource.swift; path = MessageModule/DataSource/MessageDataSource.swift; sourceTree = SOURCE_ROOT; };
 		00CFEA591FA0672300DFE2DE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		00CFEA5B1FA08D3C00DFE2DE /* MockMessageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockMessageFactory.swift; path = MessageModule/DataSource/MockMessageFactory.swift; sourceTree = SOURCE_ROOT; };
+		00CFEA5E1FA1AFC200DFE2DE /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationViewController.swift; path = MessageModule/ViewControllers/ConversationViewController.swift; sourceTree = SOURCE_ROOT; };
 		E504257C1F975739007B50B1 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		E559FB741F972EC600D9D186 /* V2POC_Chatto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = V2POC_Chatto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E559FB771F972EC600D9D186 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 		00CFEA3E1F9F5D6500DFE2DE /* MessageModule */ = {
 			isa = PBXGroup;
 			children = (
+				00CFEA5D1FA1AFA000DFE2DE /* ViewControllers */,
 				00CFEA561FA062AB00DFE2DE /* DataSource */,
 				00CFEA551FA05FE400DFE2DE /* CoreDataClasses */,
 				00CFEA511F9F691B00DFE2DE /* FNS-Health.xcdatamodeld */,
@@ -189,6 +192,14 @@
 				00CFEA5B1FA08D3C00DFE2DE /* MockMessageFactory.swift */,
 			);
 			name = DataSource;
+			sourceTree = "<group>";
+		};
+		00CFEA5D1FA1AFA000DFE2DE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				00CFEA5E1FA1AFC200DFE2DE /* ConversationViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		E559FB6B1F972EC500D9D186 = {
@@ -343,6 +354,7 @@
 				E559FB7A1F972EC600D9D186 /* ViewController.swift in Sources */,
 				00CFEA491F9F66A000DFE2DE /* Conversation+CoreDataClass.swift in Sources */,
 				00CFEA251F9DEAD800DFE2DE /* BaseMessageHandler.swift in Sources */,
+				00CFEA5F1FA1AFC200DFE2DE /* ConversationViewController.swift in Sources */,
 				00CFEA431F9F667900DFE2DE /* Message+CoreDataClass.swift in Sources */,
 				00CFEA381F9E133600DFE2DE /* SendingStatusCollectionViewCell.swift in Sources */,
 				00CFEA541F9F691B00DFE2DE /* FNS-Health.xcdatamodeld in Sources */,

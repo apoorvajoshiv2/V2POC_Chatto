@@ -16,8 +16,6 @@ import CoreData
 
 class MockMessageFactory {
     
-    var isDatabaseFilled: Bool = false
-    
     static let sharedInstance: MockMessageFactory = {
         let instance = MockMessageFactory()
         // setup code
@@ -25,7 +23,6 @@ class MockMessageFactory {
     }()
     
     func initialize() {
-    
     }
     
     static let mockMessages = [
@@ -108,29 +105,34 @@ class MockMessageFactory {
         
         for (index, message) in MockMessageFactory.mockMessages.enumerated() {
             
-            let entityDescription = NSEntityDescription.entity(forEntityName: "Message", in: self.managedObjectContext)
-            let newMessage = NSManagedObject(entity: entityDescription!, insertInto: self.managedObjectContext)
-            
-            let mediaType = message.0 // Text / Image / Video
-            let content = message.1
-            
-            newMessage.setValue("mockData-\(index)", forKey: "id")
-            newMessage.setValue(content, forKey: "text")
-            newMessage.setValue(mediaType, forKey: "mediaType")
-            
-            do {
-                try newMessage.managedObjectContext?.save()
+            if !self.getMessagesbyId(messageId: "mockData-\(index)") {
+                let entityDescription = NSEntityDescription.entity(forEntityName: "Message", in: self.managedObjectContext)
+                let newMessage = NSManagedObject(entity: entityDescription!, insertInto: self.managedObjectContext)
                 
-            } catch {
-                print(error)
+                let mediaType = message.0 // Text / Image / Video
+                let content = message.1
+                
+                newMessage.setValue("mockData-\(index)", forKey: "id")
+                newMessage.setValue(content, forKey: "text")
+                newMessage.setValue(mediaType, forKey: "mediaType")
+                
+                do {
+                    try newMessage.managedObjectContext?.save()
+                    
+                } catch {
+                    print(error)
+                }
             }
+            
+            
+            
         }
         
     }
     
     func getAllMessages() -> [Message] {
         // Initialize Fetch Request
-        MockMessageFactory.sharedInstance.isDatabaseFilled = true
+        
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
         
@@ -151,5 +153,32 @@ class MockMessageFactory {
             return result
         }
         return result
+    }
+    
+    func getMessagesbyId(messageId: String) -> Bool {
+        // Initialize Fetch Request
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+        
+        // Create Entity Description
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Message", in: self.managedObjectContext)
+        
+        // Configure Fetch Request
+        fetchRequest.entity = entityDescription
+        fetchRequest.predicate = NSPredicate(format: "id == %@", messageId)
+        //        var result = [Message]()
+        do {
+            let result = try self.managedObjectContext.fetch(fetchRequest) //as! [Message]
+            
+            if (result.count > 0) {
+                return true
+            }
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+            return false
+        }
+        return false
+        
     }
 }
