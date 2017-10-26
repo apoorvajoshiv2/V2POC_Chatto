@@ -34,12 +34,12 @@ class ChatViewController: BaseChatViewController {
         super.chatItemsDecorator = ChatItemsDemoDecorator()
         
         
-        
+        /*
         let messageFactory = MockMessageFactory.sharedInstance
         messageFactory.initialize()
         messageFactory.insertMessagesInDataBase()
         let allMessageData =  messageFactory.getAllMessages()
-        print(allMessageData)
+        print(allMessageData)*/
     
     }
     override func viewDidLoad() {

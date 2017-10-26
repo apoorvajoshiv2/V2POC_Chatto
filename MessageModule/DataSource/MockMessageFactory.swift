@@ -9,7 +9,8 @@
 import Foundation
 import CoreData
 
-
+import Chatto
+import ChattoAdditions
 
 
 
@@ -24,6 +25,8 @@ class MockMessageFactory {
     
     func initialize() {
     }
+    
+    
     
     static let mockMessages = [
         ("text", "Core Data Message 1"),
@@ -181,4 +184,37 @@ class MockMessageFactory {
         return false
         
     }
+    
+    fileprivate lazy var fetchedResultsController: NSFetchedResultsController<Message> = {
+        // Create Fetch Request
+        let fetchRequest: NSFetchRequest<Message> = Message.fetchRequest()
+        
+        // Configure Fetch Request
+//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
+        
+        // Create Fetched Results Controller
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        // Configure Fetched Results Controller
+//        fetchedResultsController.delegate = self
+        
+        return fetchedResultsController
+    }()
+    
+    
+    // MARK: - Default methods may be we have to rename or modify below methods
+    
+    func createTextMessageModel(_ uid: String, text: String, isIncoming: Bool) -> DemoTextMessageModel {
+        let messageModel = createMessageModel(uid, isIncoming: isIncoming, type: TextMessageModel<MessageModel>.chatItemType)
+        let textMessageModel = DemoTextMessageModel(messageModel: messageModel, text: text)
+        return textMessageModel
+    }
+    
+    func createMessageModel(_ uid: String, isIncoming: Bool, type: String) -> MessageModel {
+        let senderId = isIncoming ? "1" : "2"
+        let messageStatus = isIncoming || arc4random_uniform(100) % 3 == 0 ? MessageStatus.success : .failed
+        let messageModel = MessageModel(uid: uid, senderId: senderId, type: type, isIncoming: isIncoming, date: Date(), status: messageStatus)
+        return messageModel
+    }
 }
+
