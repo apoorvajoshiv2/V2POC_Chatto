@@ -202,7 +202,7 @@ class MockMessageFactory {
     }()
     
     
-    // MARK: - Default methods may be we have to rename or modify below methods
+    // MARK: - Below are default methods. May be we have to modify below methods according to FNS 
     
     func createTextMessageModel(_ uid: String, text: String, isIncoming: Bool) -> DemoTextMessageModel {
         let messageModel = createMessageModel(uid, isIncoming: isIncoming, type: TextMessageModel<MessageModel>.chatItemType)

@@ -44,6 +44,8 @@
 		E559FB821F972EC600D9D186 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E559FB801F972EC600D9D186 /* LaunchScreen.storyboard */; };
 		E559FC891F97366B00D9D186 /* Chatto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E559FC871F97366A00D9D186 /* Chatto.framework */; };
 		E559FC8A1F97366B00D9D186 /* ChattoAdditions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E559FC881F97366A00D9D186 /* ChattoAdditions.framework */; };
+		E5C5C0D61FA1B92800CDA138 /* TextMessagesViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C5C0D51FA1B92800CDA138 /* TextMessagesViewModelBuilder.swift */; };
+		E5C5C0D81FA1BFCA00CDA138 /* TextMessagesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C5C0D71FA1BFCA00CDA138 /* TextMessagesHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -99,6 +101,8 @@
 		E559FB831F972EC600D9D186 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E559FC871F97366A00D9D186 /* Chatto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chatto.framework; path = Carthage/Build/iOS/Chatto.framework; sourceTree = "<group>"; };
 		E559FC881F97366A00D9D186 /* ChattoAdditions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ChattoAdditions.framework; path = Carthage/Build/iOS/ChattoAdditions.framework; sourceTree = "<group>"; };
+		E5C5C0D51FA1B92800CDA138 /* TextMessagesViewModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextMessagesViewModelBuilder.swift; sourceTree = "<group>"; };
+		E5C5C0D71FA1BFCA00CDA138 /* TextMessagesHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextMessagesHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +166,7 @@
 		00CFEA3E1F9F5D6500DFE2DE /* MessageModule */ = {
 			isa = PBXGroup;
 			children = (
+				E5C5C0D41FA1B8D400CDA138 /* TextMessages */,
 				00CFEA5D1FA1AFA000DFE2DE /* ViewControllers */,
 				00CFEA561FA062AB00DFE2DE /* DataSource */,
 				00CFEA551FA05FE400DFE2DE /* CoreDataClasses */,
@@ -245,6 +250,16 @@
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
+		};
+		E5C5C0D41FA1B8D400CDA138 /* TextMessages */ = {
+			isa = PBXGroup;
+			children = (
+				E5C5C0D51FA1B92800CDA138 /* TextMessagesViewModelBuilder.swift */,
+				E5C5C0D71FA1BFCA00CDA138 /* TextMessagesHandler.swift */,
+			);
+			name = TextMessages;
+			path = MessageModule/TextMessages;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -349,6 +364,7 @@
 				00CFEA3A1F9E133600DFE2DE /* SendingStatusPresenter.swift in Sources */,
 				00CFEA1F1F9DEA3300DFE2DE /* DemoTextMessageHandler.swift in Sources */,
 				00CFEA5C1FA08D3C00DFE2DE /* MockMessageFactory.swift in Sources */,
+				E5C5C0D81FA1BFCA00CDA138 /* TextMessagesHandler.swift in Sources */,
 				00CFEA581FA062DF00DFE2DE /* MessageDataSource.swift in Sources */,
 				00CFEA4B1F9F66A000DFE2DE /* User+CoreDataClass.swift in Sources */,
 				E559FB7A1F972EC600D9D186 /* ViewController.swift in Sources */,
@@ -357,6 +373,7 @@
 				00CFEA5F1FA1AFC200DFE2DE /* ConversationViewController.swift in Sources */,
 				00CFEA431F9F667900DFE2DE /* Message+CoreDataClass.swift in Sources */,
 				00CFEA381F9E133600DFE2DE /* SendingStatusCollectionViewCell.swift in Sources */,
+				E5C5C0D61FA1B92800CDA138 /* TextMessagesViewModelBuilder.swift in Sources */,
 				00CFEA541F9F691B00DFE2DE /* FNS-Health.xcdatamodeld in Sources */,
 				00CFEA2E1F9DEF9100DFE2DE /* SlidingDatasSource.swift in Sources */,
 				00CFEA501F9F66EA00DFE2DE /* Media+CoreDataProperties.swift in Sources */,
