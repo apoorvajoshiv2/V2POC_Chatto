@@ -202,19 +202,6 @@ class MockMessageFactory {
     }()
     
     
-    // MARK: - Below are default methods. May be we have to modify below methods according to FNS 
     
-    func createTextMessageModel(_ uid: String, text: String, isIncoming: Bool) -> DemoTextMessageModel {
-        let messageModel = createMessageModel(uid, isIncoming: isIncoming, type: TextMessageModel<MessageModel>.chatItemType)
-        let textMessageModel = DemoTextMessageModel(messageModel: messageModel, text: text)
-        return textMessageModel
-    }
-    
-    func createMessageModel(_ uid: String, isIncoming: Bool, type: String) -> MessageModel {
-        let senderId = isIncoming ? "1" : "2"
-        let messageStatus = isIncoming || arc4random_uniform(100) % 3 == 0 ? MessageStatus.success : .failed
-        let messageModel = MessageModel(uid: uid, senderId: senderId, type: type, isIncoming: isIncoming, date: Date(), status: messageStatus)
-        return messageModel
-    }
 }
 

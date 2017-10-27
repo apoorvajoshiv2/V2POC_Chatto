@@ -7,8 +7,10 @@
 //
 
 import Foundation
-import Chatto
 import CoreData
+
+import Chatto
+import ChattoAdditions
 
 class MessageDataSource: ChatDataSourceProtocol {
     
@@ -91,10 +93,20 @@ class MessageDataSource: ChatDataSourceProtocol {
     //create message model for each core data object
     private func fetchFromCoreData(controller : NSFetchedResultsController<NSFetchRequestResult>) {
         for message in controller.fetchedObjects as! [Message]{
-            print("Message details \(message.id), \(message.text)")
-//            let message = createTextMessageModelGlobal(message.id!, senderId: message.sender!, text: message.text!, isIncoming: !message.outgoing!.boolValue)
-//            self.messages.append(message)
-//            
+//            print("Message details \(message.id), \(message.text)")
+//            let message = createTextMessageModelGlobal(message.id!,
+//                                                       senderId: message.sender!,
+//                                                       text: message.text!,
+//                                                       isIncoming: false)
+            
+            let message = createTextMessageModelGlobal(messageId: message.id!,
+                                         messageText: message.text!,
+                                         messageSenderId: "1",
+                                         isIncoming: false)
+            
+            
+            self.messages.append(message)
+            
         }
     }
     
@@ -127,6 +139,19 @@ class MessageDataSource: ChatDataSourceProtocol {
         }*/
     }
     
+    // MARK: - Below are default methods. May be we have to modify below methods according to FNS
+
+    func createTextMessageModelGlobal(messageId: String, messageText: String, messageSenderId: String, isIncoming: Bool) -> DemoTextMessageModel {
+        let messageModel = createMessageModel(messageId, isIncoming: isIncoming, type: TextMessageModel<MessageModel>.chatItemType)
+        let textMessageModel = DemoTextMessageModel(messageModel: messageModel, text: messageText)
+        return textMessageModel
+    }
     
+    func createMessageModel(_ uid: String, isIncoming: Bool, type: String) -> MessageModel {
+        let senderId = isIncoming ? "1" : "2"
+        let messageStatus = isIncoming || arc4random_uniform(100) % 3 == 0 ? MessageStatus.success : .failed
+        let messageModel = MessageModel(uid: uid, senderId: senderId, type: type, isIncoming: isIncoming, date: Date(), status: messageStatus)
+        return messageModel
+    }
 
 }
