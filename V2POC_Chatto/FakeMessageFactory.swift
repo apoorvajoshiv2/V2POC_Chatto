@@ -104,11 +104,11 @@ class FakeMessageFactory {
     }*/
 }
 
-extension TextMessageModel {
-    static var chatItemType: ChatItemType {
-        return "text"
-    }
-}
+//extension TextMessageModel {
+//    static var chatItemType: ChatItemType {
+//        return "text"
+//    }
+//}
 
 extension PhotoMessageModel {
     static var chatItemType: ChatItemType {

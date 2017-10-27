@@ -24,6 +24,15 @@ class MessageDataSource: ChatDataSourceProtocol {
 //        self.slidingWindow = SlidingDataSource(items: messages, pageSize: pageSize)
 //    }
 //  
+    
+    lazy var messageSender: MessageSender = {
+        let sender = MessageSender()
+        sender.onMessageChanged = { [weak self] (message) in
+            guard let sSelf = self else { return }
+            sSelf.delegate?.chatDataSourceDidUpdate(sSelf)
+        }
+        return sender
+    }()
   
     var hasMoreNext: Bool {
         //        return self.slidingWindow.hasMore()

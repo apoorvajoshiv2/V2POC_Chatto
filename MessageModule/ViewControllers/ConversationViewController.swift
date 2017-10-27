@@ -18,9 +18,9 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
     
     //var dataSource: MessageDataSource! // Need to replace the below FakeDataSource with this
 
-    var messageSender: FakeMessageSender!
+    var messageSender: MessageSender!
     var chatInputPresenter: BasicChatInputBarPresenter!
-    var dataSource: FakeDataSource! {
+    var dataSource: MessageDataSource! {
         didSet {
             self.chatDataSource = self.dataSource
         }
@@ -29,16 +29,41 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
 
 
     
-    lazy private var baseMessageHandler: BaseMessageHandler = {
-        return BaseMessageHandler(messageSender: self.messageSender)
+    lazy private var baseMessageHandler: FNSBaseMessageHandler = {
+//        return V2BaseMessageInteractionHandler(messageSender: self.messageSender)
+        
+        return FNSBaseMessageHandler(messageSender: self.messageSender)
     }()
     
     override func loadView() {
         super.loadView()
         // dataSource and messageSender need to be initialised here
-        let pageSize = 50
-        dataSource = FakeDataSource(messages: [], pageSize: pageSize)
-        self.messageSender = dataSource.messageSender
+//        let pageSize = 50
+//        dataSource = FakeDataSource(messages: [], pageSize: pageSize)
+        
+        
+        
+        // setup database
+        
+        let messageFactory = MockMessageFactory.sharedInstance
+        messageFactory.initialize()
+        messageFactory.insertMessagesInDataBase()
+        let allMessageData =  messageFactory.getAllMessages()
+        print(allMessageData)
+        
+        
+        configureFetchedResultsController()
+        
+        do {
+            try fetchedResultsController.performFetch()
+            
+                        self.dataSource = MessageDataSource(withController: fetchedResultsController as! NSFetchedResultsController<NSFetchRequestResult>)
+             self.messageSender = dataSource.messageSender
+        } catch {
+            print("An error occurred")
+            
+        }
+
     }
 
     
@@ -47,27 +72,6 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
         self.title = "V2 Conversations"
 
         super.chatItemsDecorator = ChatItemsDemoDecorator()
-        
-        // setup database 
-        
-        let messageFactory = MockMessageFactory.sharedInstance
-        messageFactory.initialize()
-        messageFactory.insertMessagesInDataBase()
-        let allMessageData =  messageFactory.getAllMessages()
-        print(allMessageData)
-        
-        configureFetchedResultsController()
-        
-        do {
-            try fetchedResultsController.performFetch()
-            
-//            self.dataSource = MessageDataSource(withController: fetchedResultsController as! NSFetchedResultsController<NSFetchRequestResult>)
-        } catch {
-            print("An error occurred")
-            
-        }
-
-
         
     }
     
@@ -110,7 +114,7 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
     private func createTextInputItem() -> TextChatInputItem {
         let item = TextChatInputItem()
         item.textInputHandler = { [weak self] text in
-            self?.dataSource.addTextMessage(text)
+//            self?.dataSource.addTextMessage(text)
         }
         return item
     }
@@ -118,10 +122,29 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
     // A collection of Presenter Builders are given to the ConversationViewController to configure the cells
     
     override func createPresenterBuilders() -> [ChatItemType : [ChatItemPresenterBuilderProtocol]] {
-        let textMessagePresenter = TextMessagePresenterBuilder(viewModelBuilder: TextMessagesViewModelBuilder(), interactionHandler: DemoTextMessageHandler(baseHandler: self.baseMessageHandler))
+
+        let textMessagePresenter = TextMessagePresenterBuilder(viewModelBuilder: TextMessagesViewModelBuilder(),
+                                                               interactionHandler: FNSTextMessageHandler(baseHandler: self.baseMessageHandler))
         
-        return [DemoTextMessageModel.chatItemType: [textMessagePresenter]]
+        return [FNSTextMessageModel.chatItemType: [textMessagePresenter]]
+        
         
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 }

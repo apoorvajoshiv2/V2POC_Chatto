@@ -10,13 +10,15 @@ import Foundation
 import ChattoAdditions
 
 class FNSTextMessageViewModel: TextMessageViewModel<FNSTextMessageModel>, FNSMessageViewModelProtocol  {
-    public var messageModel: DemoMessageModelProtocol {
-        // present in TextMessageViewModel class
+
+    
+    public var messageModel: V2MessageModelProtocol {
         return self.textMessage
     }
-
+    
     public override init(textMessage: FNSTextMessageModel, messageViewModel: MessageViewModelProtocol) {
         super.init(textMessage: textMessage, messageViewModel: messageViewModel)
     }
     
 }
+

@@ -11,11 +11,11 @@ import ChattoAdditions
 
 class TextMessagesHandler: BaseMessageInteractionHandlerProtocol {
     
-    private let baseHandler: BaseMessageInteractionHandler
-    init (baseHandler: BaseMessageInteractionHandler) {
+    private let baseHandler: V2BaseMessageInteractionHandler
+    init (baseHandler: V2BaseMessageInteractionHandler) {
         self.baseHandler = baseHandler
     }
-    
+
     // All these methods are required
     func userDidTapOnBubble(viewModel: FNSTextMessageViewModel) {
         self.baseHandler.userDidTapOnBubble(viewModel: viewModel) 
@@ -32,9 +32,12 @@ class TextMessagesHandler: BaseMessageInteractionHandlerProtocol {
     func userDidBeginLongPressOnBubble(viewModel: FNSTextMessageViewModel) {
         self.baseHandler.userDidBeginLongPressOnBubble(viewModel: viewModel)
     }
-    
+ 
     func userDidTapOnFailIcon(viewModel: FNSTextMessageViewModel, failIconView: UIView) {
         self.baseHandler.userDidTapOnFailIcon(viewModel: viewModel)
     }
+    
+   
+   
     
 }

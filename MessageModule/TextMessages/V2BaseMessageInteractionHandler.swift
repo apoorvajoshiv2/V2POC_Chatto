@@ -12,21 +12,22 @@ import ChattoAdditions
 
 public protocol FNSMessageViewModelProtocol {
     // Need to create DemoMessageModelProtocol for FNS
-    var messageModel: DemoMessageModelProtocol {get}
+    var messageModel: V2MessageModelProtocol {get}
 }
 
-class BaseMessageInteractionHandler {
+class V2BaseMessageInteractionHandler {
     // Need to create MessageSender for FNS
-    private let messageSender: FakeMessageSender
-    init (messageSender: FakeMessageSender) {
+    private let messageSender: MessageSender
+    init (messageSender: MessageSender) {
         self.messageSender = messageSender
     }
-    
+//  
+    /*
     func userDidTapOnFailIcon(viewModel: FNSMessageViewModelProtocol) {
         print("userDidTapOnFailIcon")
         self.messageSender.sendMessage(viewModel.messageModel)
     }
-    
+
     func userDidTapOnAvatar(viewModel: MessageViewModelProtocol) {
         print("userDidTapOnAvatar")
     }
@@ -42,6 +43,6 @@ class BaseMessageInteractionHandler {
     func userDidEndLongPressOnBubble(viewModel: FNSMessageViewModelProtocol) {
         print("userDidEndLongPressOnBubble")
     }
-
+*/
     
 }

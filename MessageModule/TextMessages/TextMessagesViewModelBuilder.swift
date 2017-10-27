@@ -22,14 +22,25 @@ class TextMessagesViewModelBuilder: ViewModelBuilderProtocol{
     let messageViewModelBuilder = MessageViewModelDefaultBuilder()
     
     func canCreateViewModel(fromModel model: Any) -> Bool {
-        return model is DemoTextMessageModel
+        return model is FNSTextMessageModel
     }
-    
+    /*
     func createViewModel(_ textMessage: DemoTextMessageModel) -> DemoTextMessageViewModel {
         let messageViewModel = self.messageViewModelBuilder.createMessageViewModel(textMessage)
         let textMessageViewModel = DemoTextMessageViewModel(textMessage: textMessage, messageViewModel: messageViewModel)
         textMessageViewModel.avatarImage.value = UIImage(named: "userAvatar")
         return textMessageViewModel
     }
+    
+    */
+    
+    func createViewModel(_ textMessage: FNSTextMessageModel) -> FNSTextMessageViewModel {
+        let messageViewModel = self.messageViewModelBuilder.createMessageViewModel(textMessage)
+        let textMessageViewModel = FNSTextMessageViewModel(textMessage: textMessage, messageViewModel: messageViewModel)
+        textMessageViewModel.avatarImage.value = UIImage(named: "userAvatar")
+        return textMessageViewModel
+    }
+    
+    
     
 }

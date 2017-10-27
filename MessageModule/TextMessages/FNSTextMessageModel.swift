@@ -8,8 +8,9 @@
 
 import Foundation
 import ChattoAdditions
+import Chatto
 
-class FNSTextMessageModel: TextMessageModel<MessageModel>, DemoMessageModelProtocol {
+class FNSTextMessageModel: TextMessageModel<MessageModel>, V2MessageModelProtocol {
     public override init(messageModel: MessageModel, text: String) {
         super.init(messageModel: messageModel, text: text)
     }
@@ -23,4 +24,11 @@ class FNSTextMessageModel: TextMessageModel<MessageModel>, DemoMessageModelProto
         }
     }
     
+}
+
+
+extension TextMessageModel {
+    static var chatItemType: ChatItemType {
+        return "text"
+    }
 }
