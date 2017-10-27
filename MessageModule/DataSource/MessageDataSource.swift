@@ -150,9 +150,9 @@ class MessageDataSource: ChatDataSourceProtocol {
     
     // MARK: - Below are default methods. May be we have to modify below methods according to FNS
 
-    func createTextMessageModelGlobal(messageId: String, messageText: String, messageSenderId: String, isIncoming: Bool) -> DemoTextMessageModel {
+    func createTextMessageModelGlobal(messageId: String, messageText: String, messageSenderId: String, isIncoming: Bool) -> FNSTextMessageModel {
         let messageModel = createMessageModel(messageId, isIncoming: isIncoming, type: TextMessageModel<MessageModel>.chatItemType)
-        let textMessageModel = DemoTextMessageModel(messageModel: messageModel, text: messageText)
+        let textMessageModel = FNSTextMessageModel(messageModel: messageModel, text: messageText)
         return textMessageModel
     }
     
