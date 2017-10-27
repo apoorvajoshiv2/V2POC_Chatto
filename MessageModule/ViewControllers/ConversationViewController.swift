@@ -118,7 +118,7 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
     // A collection of Presenter Builders are given to the ConversationViewController to configure the cells
     
     override func createPresenterBuilders() -> [ChatItemType : [ChatItemPresenterBuilderProtocol]] {
-        let textMessagePresenter = TextMessagePresenterBuilder(viewModelBuilder: TextMessagesViewModelBuilder(), interactionHandler: TextMessagesHandler(baseHandler: self.baseMessageHandler))
+        let textMessagePresenter = TextMessagePresenterBuilder(viewModelBuilder: TextMessagesViewModelBuilder(), interactionHandler: DemoTextMessageHandler(baseHandler: self.baseMessageHandler))
         
         return [DemoTextMessageModel.chatItemType: [textMessagePresenter]]
         
