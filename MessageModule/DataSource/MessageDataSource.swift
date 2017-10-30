@@ -123,29 +123,45 @@ class MessageDataSource: ChatDataSourceProtocol {
     
     
     //first we create message model and then core data object for that message
-    func addTextMessage(text: String, sender: String,  outgoing: Bool) {
-        /*let uid = NSUUID().UUIDString
-        self.addCoreDataMessage(text, sender: sender, outgoing: outgoing, id: uid, timestamp: NSDate())
-        let message = createTextMessageModelGlobal(uid, senderId: sender, text: text, isIncoming: !outgoing)
-        messageSender.sendMessage(message)
-        self.messages.append(message)*/
-        delegate?.chatDataSourceDidUpdate(self)
+    func addTextMessage(text: String)//, sender: String,  outgoing: Bool) {
+    {
+        let uid = NSUUID().uuidString
+        let sender = "1"
+        let outgoing = true
+        
+        
+        //        self.addCoreDataMessage(text: text, sender: sender, outgoing: outgoing, id: uid, timestamp: NSDate())
+        
+        
+        self.addCoreDataMessage(text: text, sender: sender, outgoing: outgoing, id: uid, timestamp: NSDate()) { (result: String) in
+            
+            let message = createTextMessageModelGlobal(messageId: uid, messageText: text, messageSenderId: sender, isIncoming: !outgoing)
+            messageSender.sendMessage(message)
+            self.messages.append(message)
+            self.slidingWindow.insertItem(message, position: .bottom)
+            delegate?.chatDataSourceDidUpdate(self)
+        }
+        
+        
     }
     
-    private func addCoreDataMessage(text: String, sender: String, outgoing: Bool, id: String, timestamp: NSDate) {
-        /*let context = self.fetchedResultsController.managedObjectContext
-        let message = NSEntityDescription.insertNewObjectForEntityForName("Message", inManagedObjectContext: context) as! Message
+    private func addCoreDataMessage(text: String, sender: String, outgoing: Bool, id: String, timestamp: NSDate, completion: (_ result: String) -> Void) {
+        let context = self.fetchedResultsController.managedObjectContext
+        let message = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
         message.text = text
-        message.sender = sender
-        message.outgoing = NSNumber(bool: outgoing)
+        message.createdOn = timestamp
+        //        message.outgoing
+        //        message.sender = sender
+        //        message.outgoing = NSNumber(bool: outgoing)
         message.id = id
-        message.timestamp = timestamp
+        //        message.timestamp = timestamp
         
         do {
             try context.save()
+            completion(message.id!)
         } catch let error as NSError {
             print(error)
-        }*/
+        }
     }
     
     // MARK: - Below are default methods. May be we have to modify below methods according to FNS

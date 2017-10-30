@@ -115,6 +115,7 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
         let item = TextChatInputItem()
         item.textInputHandler = { [weak self] text in
 //            self?.dataSource.addTextMessage(text)
+            self?.dataSource.addTextMessage(text: text)
         }
         return item
     }
