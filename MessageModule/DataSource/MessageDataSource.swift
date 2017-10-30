@@ -138,7 +138,7 @@ class MessageDataSource: ChatDataSourceProtocol {
             let message = createTextMessageModelGlobal(messageId: uid, messageText: text, messageSenderId: sender, isIncoming: !outgoing)
             messageSender.sendMessage(message)
             self.messages.append(message)
-            self.slidingWindow.insertItem(message, position: .bottom)
+//            self.slidingWindow.insertItem(message, position: .bottom)
             delegate?.chatDataSourceDidUpdate(self)
         }
         
@@ -167,7 +167,8 @@ class MessageDataSource: ChatDataSourceProtocol {
     // MARK: - Below are default methods. May be we have to modify below methods according to FNS
 
     func createTextMessageModelGlobal(messageId: String, messageText: String, messageSenderId: String, isIncoming: Bool) -> FNSTextMessageModel {
-        let messageModel = createMessageModel(messageId, isIncoming: isIncoming, type: TextMessageModel<MessageModel>.chatItemType)
+         let isIncomingMessage = arc4random_uniform(2) == 0
+        let messageModel = createMessageModel(messageId, isIncoming: isIncomingMessage, type: TextMessageModel<MessageModel>.chatItemType)
         let textMessageModel = FNSTextMessageModel(messageModel: messageModel, text: messageText)
         return textMessageModel
     }
