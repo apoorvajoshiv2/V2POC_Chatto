@@ -135,10 +135,6 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
         // colors, bubbleBorderImages, failedIconImages, layoutConstants,dateTextStyle, avatarStyle provided in BaseMessageCollectionViewCellDefaultStyle
         // used for base message background + text background
         let baseMessageStyle =  BaseMessageCollectionViewCellDefaultStyle(colors: chatColor)
-        
-        //        let borderImage = createDefaultBubbleeBorderImages()
-        //        let baseMessageStyle =  BaseMessageCollectionViewCellDefaultStyle(colors: chatColor, bubbleBorderImages: borderImage)
-        
         let textStyle = TextMessageCollectionViewCellDefaultStyle.TextStyle(
             font: UIFont.systemFont(ofSize: 13),
             incomingColor: UIColor.white, // white text for incoming
@@ -148,35 +144,14 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
         )
         
         var textCellStyle = TextMessageCollectionViewCellDefaultStyle()
-        //        let cellImage = createDefaultBubbleeImages
         textCellStyle = TextMessageCollectionViewCellDefaultStyle(
             textStyle: textStyle,
             baseStyle: baseMessageStyle) // without baseStyle, we won't have the right background
         textMessagePresenter.baseMessageStyle = baseMessageStyle
         textMessagePresenter.textCellStyle = textCellStyle
         
-        return [FNSTextMessageModel.chatItemType: [textMessagePresenter]]
-    }
-    
-    
-    // To set image to Bubble border
-    func createDefaultBubbleeBorderImages() -> BaseMessageCollectionViewCellDefaultStyle.BubbleBorderImages {
-        return BaseMessageCollectionViewCellDefaultStyle.BubbleBorderImages(
-            borderIncomingTail: UIImage(named: "bubble")!,
-            borderIncomingNoTail: UIImage(named: "bubble")!,
-            borderOutgoingTail: UIImage(named: "bubble")!,
-            borderOutgoingNoTail: UIImage(named: "bubble")!
-        )
-    }
-    
-    // To set image to bubble
-    func createDefaultBubbleeImages() -> TextMessageCollectionViewCellDefaultStyle.BubbleImages {
-        return TextMessageCollectionViewCellDefaultStyle.BubbleImages(
-            incomingTail: UIImage(named: "bubble")!,
-            incomingNoTail: UIImage(named: "bubble")!,
-            outgoingTail: UIImage(named: "bubble")!,
-            outgoingNoTail: UIImage(named: "bubble")!
-        )
+        return [FNSTextMessageModel.chatItemType: [textMessagePresenter], GroupActivityModel.chatItemType: [GroupActivityPresenterBuilder()]
+        ]
     }
     
 }
