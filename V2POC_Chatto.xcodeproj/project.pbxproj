@@ -41,6 +41,10 @@
 		00CFEA671FA34FBA00DFE2DE /* FNSTextMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CFEA651FA34FBA00DFE2DE /* FNSTextMessageHandler.swift */; };
 		E504257D1F975739007B50B1 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E504257C1F975739007B50B1 /* ChatViewController.swift */; };
 		E54B86F51FA6FF7600A0247B /* V2ChatItemsDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B86F41FA6FF7600A0247B /* V2ChatItemsDecorator.swift */; };
+		E55557261FAC761000D10BD5 /* SenderTimestampCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55557241FAC761000D10BD5 /* SenderTimestampCollectionViewCell.swift */; };
+		E55557271FAC761000D10BD5 /* SenderTimestampCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E55557251FAC761000D10BD5 /* SenderTimestampCollectionViewCell.xib */; };
+		E55557291FAC7ADD00D10BD5 /* SenderTimestampModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55557281FAC7ADD00D10BD5 /* SenderTimestampModel.swift */; };
+		E555572B1FAC7D3E00D10BD5 /* SenderTimestampPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E555572A1FAC7D3A00D10BD5 /* SenderTimestampPresenter.swift */; };
 		E559FB781F972EC600D9D186 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559FB771F972EC600D9D186 /* AppDelegate.swift */; };
 		E559FB7A1F972EC600D9D186 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559FB791F972EC600D9D186 /* ViewController.swift */; };
 		E559FB7D1F972EC600D9D186 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E559FB7B1F972EC600D9D186 /* Main.storyboard */; };
@@ -104,6 +108,10 @@
 		00CFEA651FA34FBA00DFE2DE /* FNSTextMessageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FNSTextMessageHandler.swift; path = MessageModule/MessageHandler/FNSTextMessageHandler.swift; sourceTree = SOURCE_ROOT; };
 		E504257C1F975739007B50B1 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		E54B86F41FA6FF7600A0247B /* V2ChatItemsDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V2ChatItemsDecorator.swift; sourceTree = "<group>"; };
+		E55557241FAC761000D10BD5 /* SenderTimestampCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SenderTimestampCollectionViewCell.swift; sourceTree = "<group>"; };
+		E55557251FAC761000D10BD5 /* SenderTimestampCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SenderTimestampCollectionViewCell.xib; sourceTree = "<group>"; };
+		E55557281FAC7ADD00D10BD5 /* SenderTimestampModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SenderTimestampModel.swift; sourceTree = "<group>"; };
+		E555572A1FAC7D3A00D10BD5 /* SenderTimestampPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SenderTimestampPresenter.swift; sourceTree = "<group>"; };
 		E559FB741F972EC600D9D186 /* V2POC_Chatto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = V2POC_Chatto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E559FB771F972EC600D9D186 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E559FB791F972EC600D9D186 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +190,7 @@
 		00CFEA3E1F9F5D6500DFE2DE /* MessageModule */ = {
 			isa = PBXGroup;
 			children = (
+				E55557231FAC75F200D10BD5 /* SenderTimeStamp */,
 				E5ABF8701FA9D785009E1855 /* GroupActivity */,
 				00CFEA631FA34F5D00DFE2DE /* MessageHandler */,
 				00CFEA601FA3349300DFE2DE /* MessageSender */,
@@ -250,6 +259,18 @@
 			);
 			name = Decorator;
 			sourceTree = "<group>";
+		};
+		E55557231FAC75F200D10BD5 /* SenderTimeStamp */ = {
+			isa = PBXGroup;
+			children = (
+				E55557241FAC761000D10BD5 /* SenderTimestampCollectionViewCell.swift */,
+				E55557251FAC761000D10BD5 /* SenderTimestampCollectionViewCell.xib */,
+				E55557281FAC7ADD00D10BD5 /* SenderTimestampModel.swift */,
+				E555572A1FAC7D3A00D10BD5 /* SenderTimestampPresenter.swift */,
+			);
+			name = SenderTimeStamp;
+			path = MessageModule/SenderTimeStamp;
+			sourceTree = SOURCE_ROOT;
 		};
 		E559FB6B1F972EC500D9D186 = {
 			isa = PBXGroup;
@@ -380,6 +401,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E55557271FAC761000D10BD5 /* SenderTimestampCollectionViewCell.xib in Resources */,
 				E559FB821F972EC600D9D186 /* LaunchScreen.storyboard in Resources */,
 				E559FB7F1F972EC600D9D186 /* Assets.xcassets in Resources */,
 				E559FB7D1F972EC600D9D186 /* Main.storyboard in Resources */,
@@ -424,6 +446,7 @@
 				00CFEA1F1F9DEA3300DFE2DE /* DemoTextMessageHandler.swift in Sources */,
 				00CFEA621FA334FD00DFE2DE /* MessageSender.swift in Sources */,
 				00CFEA671FA34FBA00DFE2DE /* FNSTextMessageHandler.swift in Sources */,
+				E55557291FAC7ADD00D10BD5 /* SenderTimestampModel.swift in Sources */,
 				E54B86F51FA6FF7600A0247B /* V2ChatItemsDecorator.swift in Sources */,
 				00CFEA5C1FA08D3C00DFE2DE /* MockMessageFactory.swift in Sources */,
 				E59947761FA30F72009EF294 /* FNSTextMessageModel.swift in Sources */,
@@ -431,8 +454,10 @@
 				00CFEA4B1F9F66A000DFE2DE /* User+CoreDataClass.swift in Sources */,
 				E559FB7A1F972EC600D9D186 /* ViewController.swift in Sources */,
 				00CFEA491F9F66A000DFE2DE /* Conversation+CoreDataClass.swift in Sources */,
+				E55557261FAC761000D10BD5 /* SenderTimestampCollectionViewCell.swift in Sources */,
 				00CFEA251F9DEAD800DFE2DE /* BaseMessageHandler.swift in Sources */,
 				00CFEA5F1FA1AFC200DFE2DE /* ConversationViewController.swift in Sources */,
+				E555572B1FAC7D3E00D10BD5 /* SenderTimestampPresenter.swift in Sources */,
 				00CFEA431F9F667900DFE2DE /* Message+CoreDataClass.swift in Sources */,
 				00CFEA381F9E133600DFE2DE /* SendingStatusCollectionViewCell.swift in Sources */,
 				E5C5C0D61FA1B92800CDA138 /* TextMessagesViewModelBuilder.swift in Sources */,

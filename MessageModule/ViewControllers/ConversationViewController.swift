@@ -70,7 +70,7 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "V2 Conversations"
-        
+        self.view.backgroundColor = UIColor(red: 232.0/255, green: 233.0/255, blue: 237.00/255, alpha: 1.0)
         super.chatItemsDecorator = V2ChatItemsDecorator()
         
     }
@@ -150,7 +150,7 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
         textMessagePresenter.baseMessageStyle = baseMessageStyle
         textMessagePresenter.textCellStyle = textCellStyle
         
-        return [FNSTextMessageModel.chatItemType: [textMessagePresenter], GroupActivityModel.chatItemType: [GroupActivityPresenterBuilder()]
+        return [FNSTextMessageModel.chatItemType: [textMessagePresenter], GroupActivityModel.chatItemType: [GroupActivityPresenterBuilder()], SenderTimestampModel.chatItemType: [SenderTimestampPresenterBuilder()]
         ]
     }
     

@@ -90,7 +90,7 @@ class GroupActivityPresenter: ChatItemPresenterProtocol {
     }
     
     func heightForCell(maximumWidth width: CGFloat, decorationAttributes: ChatItemDecorationAttributesProtocol?) -> CGFloat {
-        return 17
+        return 13
     }
 }
 

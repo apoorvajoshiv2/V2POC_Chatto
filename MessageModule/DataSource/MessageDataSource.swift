@@ -46,13 +46,6 @@ class MessageDataSource: ChatDataSourceProtocol {
     
     var chatItems: [ChatItemProtocol] {
         //        return self.slidingWindow.itemsInWindow
-        
-        // Done temporarily to shuffle elements of array
-        for _ in 0..<self.messages.count
-        {
-            self.messages.sort { (_,_) in arc4random() < arc4random() }
-        }
-        print("Messages",messages)
         return self.messages //return filled messages
     }
     
