@@ -20,10 +20,10 @@ class MessageDataSource: ChatDataSourceProtocol {
     
     private var messages = [ChatItemProtocol]()
     
-//    init(messages: [ChatItemProtocol], pageSize: Int) {
-//        self.slidingWindow = SlidingDataSource(items: messages, pageSize: pageSize)
-//    }
-//  
+    //    init(messages: [ChatItemProtocol], pageSize: Int) {
+    //        self.slidingWindow = SlidingDataSource(items: messages, pageSize: pageSize)
+    //    }
+    //
     
     lazy var messageSender: MessageSender = {
         let sender = MessageSender()
@@ -33,7 +33,7 @@ class MessageDataSource: ChatDataSourceProtocol {
         }
         return sender
     }()
-  
+    
     var hasMoreNext: Bool {
         //        return self.slidingWindow.hasMore()
         return true
@@ -78,17 +78,17 @@ class MessageDataSource: ChatDataSourceProtocol {
     // MARK: - All customization by V2Solutions
     
     let fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
-//    private var messages = [ChatItemProtocol]()
+    //    private var messages = [ChatItemProtocol]()
     
-//    func createMessages () {
-//        let messageFactory = MockMessageFactory.sharedInstance
-//        let allMessageData =  messageFactory.getAllMessages()
-//        for message in allMessageData as! [Message] {
-//        
-//            let message = messageFactory.createTextMessageModel(message.id!, text: message.text!, isIncoming: false)
-//            self.messages.append(message)
-//        }
-//    }
+    //    func createMessages () {
+    //        let messageFactory = MockMessageFactory.sharedInstance
+    //        let allMessageData =  messageFactory.getAllMessages()
+    //        for message in allMessageData as! [Message] {
+    //
+    //            let message = messageFactory.createTextMessageModel(message.id!, text: message.text!, isIncoming: false)
+    //            self.messages.append(message)
+    //        }
+    //    }
     
     
     //init dataSource with fetchedResultsController with messages for current chat
@@ -102,32 +102,32 @@ class MessageDataSource: ChatDataSourceProtocol {
     //create message model for each core data object
     private func fetchFromCoreData(controller : NSFetchedResultsController<NSFetchRequestResult>) {
         for message in controller.fetchedObjects as! [Message]{
-//            print("Message details \(message.id), \(message.text)")
-//            let message = createTextMessageModelGlobal(message.id!,
-//                                                       senderId: message.sender!,
-//                                                       text: message.text!,
-//                                                       isIncoming: false)
+            //            print("Message details \(message.id), \(message.text)")
+            //            let message = createTextMessageModelGlobal(message.id!,
+            //                                                       senderId: message.sender!,
+            //                                                       text: message.text!,
+            //                                                       isIncoming: false)
             
             print(" \(String(describing: message.mediaType))"  ,"\(String(describing: message.text))")
-            
             if message.mediaType == "text" {
                 let message = createTextMessageModelGlobal(messageId: message.id!,
                                                            messageText: message.text!,
                                                            messageSenderId: "1",
                                                            isIncoming: false)
                 self.messages.append(message)
-
+                
             } else if message.mediaType == "groupActivity" {
                 let groupActivityMessage = createGroupActivityModelGlobal(messageId: message.id!, messageText: message.text!)
                 self.messages.append(groupActivityMessage)
+            } else if message.mediaType == "image" {
+                let image = UIImage(named: message.text!)!
+                let size = CGSize(width: 197.9 , height: 149.7)
+                let isIncomingMessage = arc4random_uniform(2) == 0
+                let photoMessage = createPhotoMessageModel(message.id!, image: image, size: size, isIncoming: isIncomingMessage)
+                self.messages.append(photoMessage)
             }
-            
-            
         }
     }
-    
-   
-    
     
     //first we create message model and then core data object for that message
     func addTextMessage(text: String)//, sender: String,  outgoing: Bool) {
@@ -145,7 +145,7 @@ class MessageDataSource: ChatDataSourceProtocol {
             let message = createTextMessageModelGlobal(messageId: uid, messageText: text, messageSenderId: sender, isIncoming: !outgoing)
             messageSender.sendMessage(message)
             self.messages.append(message)
-//            self.slidingWindow.insertItem(message, position: .bottom)
+            //            self.slidingWindow.insertItem(message, position: .bottom)
             delegate?.chatDataSourceDidUpdate(self)
         }
         
@@ -172,9 +172,9 @@ class MessageDataSource: ChatDataSourceProtocol {
     }
     
     // MARK: - Below are default methods. May be we have to modify below methods according to FNS
-
+    
     func createTextMessageModelGlobal(messageId: String, messageText: String, messageSenderId: String, isIncoming: Bool) -> FNSTextMessageModel {
-         let isIncomingMessage = arc4random_uniform(2) == 0
+        let isIncomingMessage = arc4random_uniform(2) == 0
         let messageModel = createMessageModel(messageId, isIncoming: isIncomingMessage, type: TextMessageModel<MessageModel>.chatItemType)
         let textMessageModel = FNSTextMessageModel(messageModel: messageModel, text: messageText)
         return textMessageModel
@@ -186,10 +186,16 @@ class MessageDataSource: ChatDataSourceProtocol {
         let messageModel = MessageModel(uid: uid, senderId: senderId, type: type, isIncoming: isIncoming, date: Date(), status: messageStatus)
         return messageModel
     }
-
+    
     func createGroupActivityModelGlobal(messageId: String, messageText: String) -> GroupActivityModel {
         let groupActivityMessageModel = GroupActivityModel(uid: messageId, activityType: messageText)
         return groupActivityMessageModel
+    }
+    
+    func createPhotoMessageModel(_ uid: String, image: UIImage, size: CGSize, isIncoming: Bool) -> FNSPhotoMessageModel {
+        let messageModel = createMessageModel(uid, isIncoming: isIncoming, type: PhotoMessageModel<MessageModel>.chatItemType)
+        let photoMessageModel = FNSPhotoMessageModel(messageModel: messageModel, imageSize: size, image: image)
+        return photoMessageModel
     }
     
 }

@@ -14,7 +14,6 @@ class V2ChatItemsDecorator: ChatItemsDecoratorProtocol {
     
     // Required method of ChatItemsDecoratorProtocol
     func decorateItems(_ chatItems: [ChatItemProtocol]) -> [DecoratedChatItem] {
-        
         var decoratedChatItems = [DecoratedChatItem]()
         for (index, chatItem) in chatItems.enumerated() {
             
@@ -30,11 +29,20 @@ class V2ChatItemsDecorator: ChatItemsDecoratorProtocol {
                 
                 let dateTimeStamp = DecoratedChatItem(chatItem: SenderTimestampModel(uid: "\(currentMessage.uid)-time-separator", date: "Sender's Name: "+currentMessage.date.toWeekDayAndDateString(), senderId: currentMessage.senderId), decorationAttributes: ChatItemDecorationAttributes(bottomMargin: 5.0, showsTail: false, canShowAvatar: false))
                 decoratedChatItems.append(dateTimeStamp)
+                
+                // Photo bubble should not have tail
+                
+                if currentMessage.type == "photo" {
+                    showsTail = false
+                } else {
+                    showsTail = true
+                }
+                
             }
             
             // bottomMargin, canShowTail, canShowAvatar, canShowFailedIcon are provided by ChatItemDecorationAttributes
             
-            decoratedChatItems.append(DecoratedChatItem(chatItem: chatItem, decorationAttributes: ChatItemDecorationAttributes(bottomMargin: 5.0, showsTail: true, canShowAvatar: showsTail)))
+            decoratedChatItems.append(DecoratedChatItem(chatItem: chatItem, decorationAttributes: ChatItemDecorationAttributes(bottomMargin: 5.0, showsTail: showsTail, canShowAvatar: false)))
         }
         
         return decoratedChatItems

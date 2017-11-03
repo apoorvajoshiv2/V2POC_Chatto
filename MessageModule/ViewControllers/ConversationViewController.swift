@@ -107,8 +107,17 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
     func createChatInputItems() -> [ChatInputItemProtocol] {
         var items = [ChatInputItemProtocol]()
         items.append(self.createTextInputItem())
+        items.append(self.createPhotoInputItem())
         return items
         
+    }
+    
+    private func createPhotoInputItem() -> PhotosChatInputItem {
+        let item = PhotosChatInputItem(presentingController: self)
+        item.photoInputHandler = { [weak self] image in
+//            self?.dataSource.addPhotoMessage(image)
+        }
+        return item
     }
     
     private func createTextInputItem() -> TextChatInputItem {

@@ -37,9 +37,10 @@ class MockMessageFactory {
         ("groupActivity","au"),
         ("groupActivity","ru"),
         ("groupActivity","r"),
-        ("groupActivity","rd")
-//        ,
-//        ("image", "pic-test-1")
+        ("groupActivity","rd"),
+        ("image", "pic-test-1"),
+        ("image", "pic-test-2"),
+        ("image", "pic-test-3")
     ]
     
     var mockDBMessages = [Message]()
