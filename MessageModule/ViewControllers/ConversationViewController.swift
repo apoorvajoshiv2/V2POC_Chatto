@@ -150,7 +150,26 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
         textMessagePresenter.baseMessageStyle = baseMessageStyle
         textMessagePresenter.textCellStyle = textCellStyle
         
-        return [FNSTextMessageModel.chatItemType: [textMessagePresenter], GroupActivityModel.chatItemType: [GroupActivityPresenterBuilder()], SenderTimestampModel.chatItemType: [SenderTimestampPresenterBuilder()]
+        // Photo Presenter
+        
+        let photoMessagePresenter = PhotoMessagePresenterBuilder(
+            viewModelBuilder: FNSPhotoMessageViewModelBuilder(),
+            interactionHandler: FNSPhotoMessageHandler(baseHandler: self.baseMessageHandler)
+        )
+        
+        return [
+            FNSTextMessageModel.chatItemType:[
+                textMessagePresenter
+            ],
+                GroupActivityModel.chatItemType:[
+                    GroupActivityPresenterBuilder()
+            ],
+                SenderTimestampModel.chatItemType: [
+                    SenderTimestampPresenterBuilder()
+            ],
+                FNSPhotoMessageModel.chatItemType: [
+                    photoMessagePresenter
+            ]
         ]
     }
     

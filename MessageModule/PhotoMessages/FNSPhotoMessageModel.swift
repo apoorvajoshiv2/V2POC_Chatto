@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Chatto
 import ChattoAdditions
 
 public class FNSPhotoMessageModel: PhotoMessageModel<MessageModel>, V2MessageModelProtocol {
@@ -23,3 +24,4 @@ public class FNSPhotoMessageModel: PhotoMessageModel<MessageModel>, V2MessageMod
         }
     }
 }
+
