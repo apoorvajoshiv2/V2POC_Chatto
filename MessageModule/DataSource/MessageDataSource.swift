@@ -46,6 +46,13 @@ class MessageDataSource: ChatDataSourceProtocol {
     
     var chatItems: [ChatItemProtocol] {
         //        return self.slidingWindow.itemsInWindow
+        
+        // Done temporarily to shuffle elements of array
+        for _ in 0..<self.messages.count
+        {
+            self.messages.sort { (_,_) in arc4random() < arc4random() }
+        }
+        print("Messages",messages)
         return self.messages //return filled messages
     }
     
@@ -108,13 +115,20 @@ class MessageDataSource: ChatDataSourceProtocol {
 //                                                       text: message.text!,
 //                                                       isIncoming: false)
             
-            let message = createTextMessageModelGlobal(messageId: message.id!,
-                                         messageText: message.text!,
-                                         messageSenderId: "1",
-                                         isIncoming: false)
+            print(" \(String(describing: message.mediaType))"  ,"\(String(describing: message.text))")
             
+            if message.mediaType == "text" {
+                let message = createTextMessageModelGlobal(messageId: message.id!,
+                                                           messageText: message.text!,
+                                                           messageSenderId: "1",
+                                                           isIncoming: false)
+                self.messages.append(message)
+
+            } else if message.mediaType == "groupActivity" {
+                let groupActivityMessage = createGroupActivityModelGlobal(messageId: message.id!, messageText: message.text!)
+                self.messages.append(groupActivityMessage)
+            }
             
-            self.messages.append(message)
             
         }
     }
@@ -180,4 +194,9 @@ class MessageDataSource: ChatDataSourceProtocol {
         return messageModel
     }
 
+    func createGroupActivityModelGlobal(messageId: String, messageText: String) -> GroupActivityModel {
+        let groupActivityMessageModel = GroupActivityModel(uid: messageId, activityType: messageText)
+        return groupActivityMessageModel
+    }
+    
 }

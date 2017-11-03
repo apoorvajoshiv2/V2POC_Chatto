@@ -61,7 +61,7 @@ class GroupActivityPresenter: ChatItemPresenterProtocol {
     
     func configureCell(_ cell: UICollectionViewCell, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
         guard let activityCell = cell as? GroupActivityCollectionViewCell else {
-            assert(false, "expecting status cell")
+            assert(false, "expecting group activity cell")
             return
         }
         
@@ -90,7 +90,7 @@ class GroupActivityPresenter: ChatItemPresenterProtocol {
     }
     
     func heightForCell(maximumWidth width: CGFloat, decorationAttributes: ChatItemDecorationAttributesProtocol?) -> CGFloat {
-        return 12
+        return 17
     }
 }
 

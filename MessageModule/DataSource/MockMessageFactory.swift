@@ -32,7 +32,12 @@ class MockMessageFactory {
         ("text", "Core Data Message 1"),
         ("text", "Core Data Message 2"),
         ("text", "Core Data Message 3"),
-        ("text", "Core Data Message 4 => urls: https://github.com/badoo/Chatto, phone numbers: 07400000000, dates: 3 jan 2016 and others")
+        ("text", "Core Data Message 4 => urls: https://github.com/badoo/Chatto, phone numbers: 07400000000, dates: 3 jan 2016 and others"),
+        ("groupActivity","room_changed_description"),
+        ("groupActivity","au"),
+        ("groupActivity","ru"),
+        ("groupActivity","r"),
+        ("groupActivity","rd")
 //        ,
 //        ("image", "pic-test-1")
     ]

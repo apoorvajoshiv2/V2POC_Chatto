@@ -35,15 +35,6 @@ class V2ChatItemsDecorator: ChatItemsDecoratorProtocol {
                 } else {
                     showsTail = true
                 }
-                
-                if currentMessage.type == "groupActivity" {
-                    additionalItems.append(
-                        DecoratedChatItem(
-                            chatItem: GroupActivityModel(uid: "\(currentMessage.uid)-groupActivity", activityType: currentMessage.uid),
-                            decorationAttributes: ChatItemDecorationAttributes(bottomMargin: 6.3, showsTail: false, canShowAvatar: false))
-                    )
-                }
-                
             }
             
             // bottomMargin, canShowTail, canShowAvatar, canShowFailedIcon are provided by ChatItemDecorationAttributes
