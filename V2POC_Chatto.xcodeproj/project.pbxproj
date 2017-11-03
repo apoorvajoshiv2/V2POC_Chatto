@@ -41,6 +41,9 @@
 		00CFEA671FA34FBA00DFE2DE /* FNSTextMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CFEA651FA34FBA00DFE2DE /* FNSTextMessageHandler.swift */; };
 		E504257D1F975739007B50B1 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E504257C1F975739007B50B1 /* ChatViewController.swift */; };
 		E54B86F51FA6FF7600A0247B /* V2ChatItemsDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B86F41FA6FF7600A0247B /* V2ChatItemsDecorator.swift */; };
+		E55420E51FAC490B00452DE2 /* FNSPhotoMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55420E41FAC490B00452DE2 /* FNSPhotoMessageHandler.swift */; };
+		E55420E71FAC497F00452DE2 /* FNSPhotoMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55420E61FAC497F00452DE2 /* FNSPhotoMessageModel.swift */; };
+		E55420E91FAC4A2700452DE2 /* FNSPhotoMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55420E81FAC4A2700452DE2 /* FNSPhotoMessageViewModel.swift */; };
 		E55557261FAC761000D10BD5 /* SenderTimestampCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55557241FAC761000D10BD5 /* SenderTimestampCollectionViewCell.swift */; };
 		E55557271FAC761000D10BD5 /* SenderTimestampCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E55557251FAC761000D10BD5 /* SenderTimestampCollectionViewCell.xib */; };
 		E55557291FAC7ADD00D10BD5 /* SenderTimestampModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55557281FAC7ADD00D10BD5 /* SenderTimestampModel.swift */; };
@@ -108,6 +111,9 @@
 		00CFEA651FA34FBA00DFE2DE /* FNSTextMessageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FNSTextMessageHandler.swift; path = MessageModule/MessageHandler/FNSTextMessageHandler.swift; sourceTree = SOURCE_ROOT; };
 		E504257C1F975739007B50B1 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		E54B86F41FA6FF7600A0247B /* V2ChatItemsDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V2ChatItemsDecorator.swift; sourceTree = "<group>"; };
+		E55420E41FAC490B00452DE2 /* FNSPhotoMessageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FNSPhotoMessageHandler.swift; sourceTree = "<group>"; };
+		E55420E61FAC497F00452DE2 /* FNSPhotoMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FNSPhotoMessageModel.swift; sourceTree = "<group>"; };
+		E55420E81FAC4A2700452DE2 /* FNSPhotoMessageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FNSPhotoMessageViewModel.swift; sourceTree = "<group>"; };
 		E55557241FAC761000D10BD5 /* SenderTimestampCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SenderTimestampCollectionViewCell.swift; sourceTree = "<group>"; };
 		E55557251FAC761000D10BD5 /* SenderTimestampCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SenderTimestampCollectionViewCell.xib; sourceTree = "<group>"; };
 		E55557281FAC7ADD00D10BD5 /* SenderTimestampModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SenderTimestampModel.swift; sourceTree = "<group>"; };
@@ -190,6 +196,7 @@
 		00CFEA3E1F9F5D6500DFE2DE /* MessageModule */ = {
 			isa = PBXGroup;
 			children = (
+				E55420E31FAC47A600452DE2 /* PhotoMessages */,
 				E55557231FAC75F200D10BD5 /* SenderTimeStamp */,
 				E5ABF8701FA9D785009E1855 /* GroupActivity */,
 				00CFEA631FA34F5D00DFE2DE /* MessageHandler */,
@@ -259,6 +266,17 @@
 			);
 			name = Decorator;
 			sourceTree = "<group>";
+		};
+		E55420E31FAC47A600452DE2 /* PhotoMessages */ = {
+			isa = PBXGroup;
+			children = (
+				E55420E41FAC490B00452DE2 /* FNSPhotoMessageHandler.swift */,
+				E55420E61FAC497F00452DE2 /* FNSPhotoMessageModel.swift */,
+				E55420E81FAC4A2700452DE2 /* FNSPhotoMessageViewModel.swift */,
+			);
+			name = PhotoMessages;
+			path = MessageModule/PhotoMessages;
+			sourceTree = SOURCE_ROOT;
 		};
 		E55557231FAC75F200D10BD5 /* SenderTimeStamp */ = {
 			isa = PBXGroup;
@@ -441,16 +459,19 @@
 				00CFEA211F9DEA3300DFE2DE /* DemoTextMessageViewModel.swift in Sources */,
 				00CFEA2B1F9DEF9100DFE2DE /* FakeDataSource.swift in Sources */,
 				E5ABF8731FA9D79B009E1855 /* GroupActivityCollectionViewCell.swift in Sources */,
+				E55420E71FAC497F00452DE2 /* FNSPhotoMessageModel.swift in Sources */,
 				00CFEA331F9E12C400DFE2DE /* ChatItemsDemoDecorator.swift in Sources */,
 				00CFEA3A1F9E133600DFE2DE /* SendingStatusPresenter.swift in Sources */,
 				00CFEA1F1F9DEA3300DFE2DE /* DemoTextMessageHandler.swift in Sources */,
 				00CFEA621FA334FD00DFE2DE /* MessageSender.swift in Sources */,
+				E55420E91FAC4A2700452DE2 /* FNSPhotoMessageViewModel.swift in Sources */,
 				00CFEA671FA34FBA00DFE2DE /* FNSTextMessageHandler.swift in Sources */,
 				E55557291FAC7ADD00D10BD5 /* SenderTimestampModel.swift in Sources */,
 				E54B86F51FA6FF7600A0247B /* V2ChatItemsDecorator.swift in Sources */,
 				00CFEA5C1FA08D3C00DFE2DE /* MockMessageFactory.swift in Sources */,
 				E59947761FA30F72009EF294 /* FNSTextMessageModel.swift in Sources */,
 				00CFEA581FA062DF00DFE2DE /* MessageDataSource.swift in Sources */,
+				E55420E51FAC490B00452DE2 /* FNSPhotoMessageHandler.swift in Sources */,
 				00CFEA4B1F9F66A000DFE2DE /* User+CoreDataClass.swift in Sources */,
 				E559FB7A1F972EC600D9D186 /* ViewController.swift in Sources */,
 				00CFEA491F9F66A000DFE2DE /* Conversation+CoreDataClass.swift in Sources */,
