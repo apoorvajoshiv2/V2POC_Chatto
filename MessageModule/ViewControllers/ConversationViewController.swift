@@ -178,6 +178,9 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
             ],
                 FNSPhotoMessageModel.chatItemType: [
                     photoMessagePresenter
+            ],
+                MediaTextMessageModel.chatItemType: [
+                    MediaTextMessagePresenterBuilder()
             ]
         ]
     }

@@ -125,7 +125,13 @@ class MessageDataSource: ChatDataSourceProtocol {
                 let isIncomingMessage = arc4random_uniform(2) == 0
                 let photoMessage = createPhotoMessageModel(message.id!, image: image, size: size, isIncoming: isIncomingMessage)
                 self.messages.append(photoMessage)
+            } else if message.mediaType == "media" {
+                let isIncomingMessage = arc4random_uniform(2) == 0
+                let isMediaText = arc4random_uniform(2) == 0
+                let mediaMessage = createMediaMessageModel(message.id!, image: message.text!, text: message.text!, isIncoming: isIncomingMessage, isVimeo: isIncomingMessage, isMediaText: isMediaText)
+                self.messages.append(mediaMessage)
             }
+
         }
     }
     
@@ -196,6 +202,11 @@ class MessageDataSource: ChatDataSourceProtocol {
         let messageModel = createMessageModel(uid, isIncoming: isIncoming, type: PhotoMessageModel<MessageModel>.chatItemType)
         let photoMessageModel = FNSPhotoMessageModel(messageModel: messageModel, imageSize: size, image: image)
         return photoMessageModel
+    }
+    
+    func createMediaMessageModel(_ uid: String, image: String, text: String, isIncoming: Bool, isVimeo: Bool, isMediaText: Bool) -> MediaTextMessageModel {
+        let mediaMessageModel = MediaTextMessageModel(uid: uid, image: image, text: text, isVimeo: isVimeo, isMediaText: isMediaText)
+        return mediaMessageModel
     }
     
 }

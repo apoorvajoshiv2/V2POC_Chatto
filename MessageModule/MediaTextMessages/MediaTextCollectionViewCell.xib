@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MediaTextCollectionViewCell" customModule="V2POC_Chatto" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9hu-PR-Xrx">
+                        <rect key="frame" x="16" y="6" width="200" height="178"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kfe-EF-4CY">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="IcR-A5-2hX"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1W3-C1-w26">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="150"/>
+                                <connections>
+                                    <action selector="mediaTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="xgw-qO-cJt"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gx6-Mz-5CQ">
+                                <rect key="frame" x="10" y="150" width="180" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="cw5-ve-gpy"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="27" id="wYc-CD-FSb"/>
+                                </constraints>
+                                <string key="text">only the bridging headers. So I created it, but it's actually empty. I can use all my ObjC classes in Swift, but I can't do it vice versa. I marked my swift class with</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playButton" translatesAutoresizingMaskIntoConstraints="NO" id="BlE-x5-NlZ">
+                                <rect key="frame" x="88" y="63" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="D0n-bh-xK8"/>
+                                    <constraint firstAttribute="width" constant="24" id="jdD-G1-I2M"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1W3-C1-w26" firstAttribute="leading" secondItem="9hu-PR-Xrx" secondAttribute="leading" id="5qd-I5-M1V"/>
+                            <constraint firstItem="BlE-x5-NlZ" firstAttribute="centerX" secondItem="Kfe-EF-4CY" secondAttribute="centerX" id="8fL-qw-hMv"/>
+                            <constraint firstAttribute="width" constant="200" id="COA-w6-yMe"/>
+                            <constraint firstItem="1W3-C1-w26" firstAttribute="top" secondItem="9hu-PR-Xrx" secondAttribute="top" id="CTg-MO-35u"/>
+                            <constraint firstItem="Kfe-EF-4CY" firstAttribute="top" secondItem="9hu-PR-Xrx" secondAttribute="top" id="Eh0-Ly-gHe"/>
+                            <constraint firstAttribute="bottom" secondItem="Kfe-EF-4CY" secondAttribute="bottom" constant="28" id="ITi-oU-6Xg"/>
+                            <constraint firstAttribute="trailing" secondItem="Kfe-EF-4CY" secondAttribute="trailing" id="QLT-KS-hCR"/>
+                            <constraint firstAttribute="bottom" secondItem="gx6-Mz-5CQ" secondAttribute="bottom" constant="1" id="U8e-KX-qab"/>
+                            <constraint firstItem="gx6-Mz-5CQ" firstAttribute="top" secondItem="Kfe-EF-4CY" secondAttribute="bottom" id="aBP-CA-16g"/>
+                            <constraint firstItem="BlE-x5-NlZ" firstAttribute="centerY" secondItem="Kfe-EF-4CY" secondAttribute="centerY" id="cDQ-mZ-d24"/>
+                            <constraint firstItem="Kfe-EF-4CY" firstAttribute="leading" secondItem="9hu-PR-Xrx" secondAttribute="leading" id="dbO-B8-chv"/>
+                            <constraint firstItem="gx6-Mz-5CQ" firstAttribute="top" secondItem="1W3-C1-w26" secondAttribute="bottom" id="ePO-fL-lSf"/>
+                            <constraint firstAttribute="trailing" secondItem="1W3-C1-w26" secondAttribute="trailing" id="njn-OW-7sV"/>
+                            <constraint firstItem="gx6-Mz-5CQ" firstAttribute="leading" secondItem="9hu-PR-Xrx" secondAttribute="leading" constant="10" id="txW-Qi-1yV"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="9hu-PR-Xrx" secondAttribute="bottom" constant="6" id="eqR-0z-GMO"/>
+                <constraint firstItem="9hu-PR-Xrx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="f81-Ww-1e5"/>
+                <constraint firstItem="9hu-PR-Xrx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="6" id="gUG-ev-jBb"/>
+            </constraints>
+            <connections>
+                <outlet property="bottomConstraint" destination="ITi-oU-6Xg" id="1vg-2p-mSv"/>
+                <outlet property="containerView" destination="9hu-PR-Xrx" id="Hgg-5u-APr"/>
+                <outlet property="imageView" destination="Kfe-EF-4CY" id="SFy-tp-YLF"/>
+                <outlet property="labelHeightConstraint" destination="wYc-CD-FSb" id="LvB-kY-Nv9"/>
+                <outlet property="playButton" destination="BlE-x5-NlZ" id="jNT-Ld-87w"/>
+                <outlet property="textLabel" destination="gx6-Mz-5CQ" id="rAw-3p-miJ"/>
+            </connections>
+            <point key="canvasLocation" x="24.5" y="52"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="playButton" width="24" height="24"/>
+    </resources>
+</document>
