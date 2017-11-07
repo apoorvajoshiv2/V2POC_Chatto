@@ -16,6 +16,7 @@ class MediaTextCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var playButton: UIImageView!
     @IBOutlet weak var labelHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var heightForContainerView: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     override func awakeFromNib() {
         super.awakeFromNib()

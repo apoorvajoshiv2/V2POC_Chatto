@@ -121,7 +121,7 @@ class MessageDataSource: ChatDataSourceProtocol {
                 self.messages.append(groupActivityMessage)
             } else if message.mediaType == "image" {
                 let image = UIImage(named: message.text!)!
-                let size = CGSize(width: 197.9 , height: 149.7)
+                let size = CGSize(width: 200 , height: 150)
                 let isIncomingMessage = arc4random_uniform(2) == 0
                 let photoMessage = createPhotoMessageModel(message.id!, image: image, size: size, isIncoming: isIncomingMessage)
                 self.messages.append(photoMessage)
@@ -129,6 +129,10 @@ class MessageDataSource: ChatDataSourceProtocol {
                 let isIncomingMessage = arc4random_uniform(2) == 0
                 let isMediaText = arc4random_uniform(2) == 0
                 let mediaMessage = createMediaMessageModel(message.id!, image: message.text!, text: message.text!, isIncoming: isIncomingMessage, isVimeo: isIncomingMessage, isMediaText: isMediaText)
+                
+                let messageModel = createMessageModel(message.id!, isIncoming: isIncomingMessage, type: SenderTimestampModel.chatItemType)
+                let dateTimeStamp = SenderTimestampModel(uid: "\(messageModel.uid)-time-separator", date: "Sender's Name: "+messageModel.date.toWeekDayAndDateString(), senderId: messageModel.senderId)
+                self.messages.append(dateTimeStamp)
                 self.messages.append(mediaMessage)
             }
 
@@ -205,6 +209,7 @@ class MessageDataSource: ChatDataSourceProtocol {
     }
     
     func createMediaMessageModel(_ uid: String, image: String, text: String, isIncoming: Bool, isVimeo: Bool, isMediaText: Bool) -> MediaTextMessageModel {
+        
         let mediaMessageModel = MediaTextMessageModel(uid: uid, image: image, text: text, isVimeo: isVimeo, isMediaText: isMediaText)
         return mediaMessageModel
     }

@@ -74,16 +74,16 @@ class MediaTextMessagePresenter: ChatItemPresenterProtocol {
         } else {
             mediaCell.playButton.isHidden = true
         }
-        /*
+        
         if mediaTextMessageModel.isMediaText {
-            mediaCell.textLabel.sizeToFit()
+//            mediaCell.textLabel.sizeToFit()
             mediaCell.textLabel.isHidden = false
         } else {
-            mediaCell.labelHeightConstraint.constant = 0.0
-            mediaCell.bottomConstraint.constant = 0.0
+//            mediaCell.labelHeightConstraint.constant = 0.0
+           // mediaCell.bottomConstraint.constant = 0.0
             mediaCell.textLabel.isHidden = true
         }
-        */
+ 
     }
     
     var canCalculateHeightInBackground: Bool {
@@ -91,7 +91,13 @@ class MediaTextMessagePresenter: ChatItemPresenterProtocol {
     }
     
     func heightForCell(maximumWidth width: CGFloat, decorationAttributes: ChatItemDecorationAttributesProtocol?) -> CGFloat {
-        return 200
+        var height: CGFloat = 0.0
+        if mediaTextMessageModel.isMediaText {
+            height = 241
+        } else {
+            height = 162
+        }
+        return height
     }
     
 }
