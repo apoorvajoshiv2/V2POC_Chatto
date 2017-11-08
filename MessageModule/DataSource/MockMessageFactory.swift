@@ -41,8 +41,10 @@ class MockMessageFactory {
         ("image", "pic-test-1"),
         ("image", "pic-test-2"),
         ("image", "pic-test-3"),
-        ("media", "pic-test-1"),
-        ("media", "pic-test-2")
+        ("media", "When you start feeling anxious, direct yourself to happy thoughts. Create a positive image in your mind to boost positivity and avoid bad feelings."),
+        ("media", "When you start feeling anxious, direct yourself to happy thoughts."),
+        ("media", "When you start feeling anxious, direct yourself to happy thoughts.Create a positive image in your mind to boost positivity and avoid bad feelings.When you start feeling anxious, direct yourself to happy thoughts.Create a positive image in your mind to boost positivity and avoid bad feelings.When you start feeling anxious, direct yourself to happy thoughts.Create a positive image in your mind to boost positivity and avoid bad feelings."),
+        ("media", "pic-test-3")
     ]
     
     var mockDBMessages = [Message]()

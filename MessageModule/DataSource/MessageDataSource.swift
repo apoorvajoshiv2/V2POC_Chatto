@@ -128,7 +128,7 @@ class MessageDataSource: ChatDataSourceProtocol {
             } else if message.mediaType == "media" {
                 let isIncomingMessage = arc4random_uniform(2) == 0
                 let isMediaText = arc4random_uniform(2) == 0
-                let mediaMessage = createMediaMessageModel(message.id!, image: message.text!, text: message.text!, isIncoming: isIncomingMessage, isVimeo: isIncomingMessage, isMediaText: isMediaText)
+                let mediaMessage = createMediaMessageModel(message.id!, image: "pic-test-2", text: message.text!, isIncoming: isIncomingMessage, isVimeo: isIncomingMessage, isMediaText: isMediaText)
                 
                 let messageModel = createMessageModel(message.id!, isIncoming: isIncomingMessage, type: SenderTimestampModel.chatItemType)
                 let dateTimeStamp = SenderTimestampModel(uid: "\(messageModel.uid)-time-separator", date: "Sender's Name: "+messageModel.date.toWeekDayAndDateString(), senderId: messageModel.senderId)
