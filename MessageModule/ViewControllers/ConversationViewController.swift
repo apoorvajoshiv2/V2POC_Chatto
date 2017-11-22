@@ -115,7 +115,7 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
     private func createPhotoInputItem() -> PhotosChatInputItem {
         let item = PhotosChatInputItem(presentingController: self)
         item.photoInputHandler = { [weak self] image in
-//            self?.dataSource.addPhotoMessage(image)
+            self?.dataSource.addPhotoMessage(image: image)
         }
         return item
     }
@@ -176,9 +176,9 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
                 SenderTimestampModel.chatItemType: [
                     SenderTimestampPresenterBuilder()
             ],
-                FNSPhotoMessageModel.chatItemType: [
-                    photoMessagePresenter
-            ],
+//                FNSPhotoMessageModel.chatItemType: [
+//                    photoMessagePresenter
+//            ],
                 MediaTextMessageModel.chatItemType: [
                     MediaTextMessagePresenterBuilder()
             ]

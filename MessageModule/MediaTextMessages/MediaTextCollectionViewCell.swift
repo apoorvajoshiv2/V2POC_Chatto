@@ -14,6 +14,7 @@ class MediaTextCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var playButton: UIImageView!
+    @IBOutlet weak var viewForImage: UIView!
     @IBOutlet weak var labelHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var heightForContainerView: NSLayoutConstraint!

@@ -33,7 +33,7 @@
                                             <action selector="mediaTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="xgw-qO-cJt"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kfe-EF-4CY">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kfe-EF-4CY">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="150"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="rIw-DO-0n4"/>
@@ -74,7 +74,7 @@
                             <constraint firstItem="GNc-mg-EzW" firstAttribute="top" secondItem="9hu-PR-Xrx" secondAttribute="top" id="NNt-rh-l9N"/>
                             <constraint firstItem="GNc-mg-EzW" firstAttribute="leading" secondItem="9hu-PR-Xrx" secondAttribute="leading" id="WvE-3f-0OS"/>
                             <constraint firstAttribute="width" constant="200" id="XPs-PC-jPz"/>
-                            <constraint firstItem="gx6-Mz-5CQ" firstAttribute="top" secondItem="GNc-mg-EzW" secondAttribute="bottom" constant="5" id="a4U-tV-Njv"/>
+                            <constraint firstItem="gx6-Mz-5CQ" firstAttribute="top" relation="lessThanOrEqual" secondItem="GNc-mg-EzW" secondAttribute="bottom" constant="5" id="a4U-tV-Njv"/>
                             <constraint firstAttribute="trailing" secondItem="gx6-Mz-5CQ" secondAttribute="trailing" constant="10" id="jc4-8s-uku"/>
                         </constraints>
                     </view>
@@ -90,8 +90,9 @@
                 <outlet property="imageView" destination="Kfe-EF-4CY" id="SFy-tp-YLF"/>
                 <outlet property="playButton" destination="BlE-x5-NlZ" id="jNT-Ld-87w"/>
                 <outlet property="textLabel" destination="gx6-Mz-5CQ" id="rAw-3p-miJ"/>
+                <outlet property="viewForImage" destination="GNc-mg-EzW" id="Wma-md-dCA"/>
             </connections>
-            <point key="canvasLocation" x="-540" y="-236"/>
+            <point key="canvasLocation" x="-540.5" y="-236"/>
         </collectionViewCell>
     </objects>
     <resources>

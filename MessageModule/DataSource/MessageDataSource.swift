@@ -128,14 +128,21 @@ class MessageDataSource: ChatDataSourceProtocol {
             } else if message.mediaType == "media" {
                 let isIncomingMessage = arc4random_uniform(2) == 0
                 let isMediaText = arc4random_uniform(2) == 0
-                let mediaMessage = createMediaMessageModel(message.id!, image: "pic-test-2", text: message.text!, isIncoming: isIncomingMessage, isVimeo: isIncomingMessage, isMediaText: isMediaText)
+                let mediaMessage: MediaTextMessageModel
+                if (message.mediaUrl != nil) {
+                    mediaMessage = createMediaMessageModel(message.id!, image: message.mediaUrl!, text: message.text!, isIncoming: isIncomingMessage, isVimeo: isIncomingMessage, isMediaText: isMediaText)
+                } else {
+                    // Default image
+                    mediaMessage = createMediaMessageModel(message.id!, image: "pic-test-1", text: message.text!, isIncoming: isIncomingMessage, isVimeo: isIncomingMessage, isMediaText: isMediaText)
+                }
+                
                 
                 let messageModel = createMessageModel(message.id!, isIncoming: isIncomingMessage, type: SenderTimestampModel.chatItemType)
                 let dateTimeStamp = SenderTimestampModel(uid: "\(messageModel.uid)-time-separator", date: "Sender's Name: "+messageModel.date.toWeekDayAndDateString(), senderId: messageModel.senderId)
                 self.messages.append(dateTimeStamp)
                 self.messages.append(mediaMessage)
             }
-
+            
         }
     }
     
@@ -150,7 +157,7 @@ class MessageDataSource: ChatDataSourceProtocol {
         //        self.addCoreDataMessage(text: text, sender: sender, outgoing: outgoing, id: uid, timestamp: NSDate())
         
         
-        self.addCoreDataMessage(text: text, sender: sender, outgoing: outgoing, id: uid, timestamp: NSDate()) { (result: String) in
+        self.addCoreDataMessage(text: text, imageUrl: "", mediaType: "text", sender: sender, outgoing: outgoing, id: uid, timestamp: NSDate()) { (result: String) in
             
             let message = createTextMessageModelGlobal(messageId: uid, messageText: text, messageSenderId: sender, isIncoming: !outgoing)
             messageSender.sendMessage(message)
@@ -162,11 +169,32 @@ class MessageDataSource: ChatDataSourceProtocol {
         
     }
     
-    private func addCoreDataMessage(text: String, sender: String, outgoing: Bool, id: String, timestamp: NSDate, completion: (_ result: String) -> Void) {
+    
+    func addPhotoMessage(image: UIImage)//, sender: String,  outgoing: Bool) {
+    {
+        let imageData = UIImageJPEGRepresentation(image, 0.5)
+        let imageUrl = imageData!.base64EncodedString(options: NSData.Base64EncodingOptions.endLineWithLineFeed)
+        
+        let uid = NSUUID().uuidString
+        let sender = "1"
+        let outgoing = true
+        self.addCoreDataMessage(text: "", imageUrl: imageUrl, mediaType: "media", sender: sender, outgoing: outgoing, id: uid, timestamp: NSDate()) { (result: String) in
+            
+            let message = createMediaMessageModel(uid, image: imageUrl, text: "", isIncoming: false, isVimeo: false, isMediaText: false)
+            //            messageSender.sendMessage(message as! V2MessageModelProtocol)
+            self.messages.append(message)
+            //            self.slidingWindow.insertItem(message, position: .bottom)
+            delegate?.chatDataSourceDidUpdate(self)
+        }
+    }
+    
+    private func addCoreDataMessage(text: String, imageUrl: String, mediaType: String, sender: String, outgoing: Bool, id: String, timestamp: NSDate, completion: (_ result: String) -> Void) {
         let context = self.fetchedResultsController.managedObjectContext
         let message = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
         message.text = text
+        message.mediaUrl = imageUrl
         message.createdOn = timestamp
+        message.mediaType = mediaType
         //        message.outgoing
         //        message.sender = sender
         //        message.outgoing = NSNumber(bool: outgoing)
@@ -209,8 +237,8 @@ class MessageDataSource: ChatDataSourceProtocol {
     }
     
     func createMediaMessageModel(_ uid: String, image: String, text: String, isIncoming: Bool, isVimeo: Bool, isMediaText: Bool) -> MediaTextMessageModel {
-        
-        let mediaMessageModel = MediaTextMessageModel(uid: uid, image: image, text: text, isVimeo: isVimeo, isMediaText: isMediaText)
+        let messageStatus = isIncoming || arc4random_uniform(100) % 3 == 0 ? MessageStatus.success : .failed
+        let mediaMessageModel = MediaTextMessageModel(uid: uid, image: image, text: text, isVimeo: isVimeo, isMediaText: isMediaText, status: messageStatus)
         return mediaMessageModel
     }
     

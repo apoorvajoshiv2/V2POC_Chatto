@@ -15,18 +15,20 @@ class MediaTextMessageModel: ChatItemProtocol {
     static var chatItemType: ChatItemType {
         return "mediaText"
     }
+    var status: MessageStatus
     var type: ChatItemType = MediaTextMessageModel.chatItemType
     var mediaThumbnail: String
     var mediaText: String
     var isVimeo = false
     var isMediaText = false
     // Temporarily I have passed only uid as parameter
-    init (uid: String, image: String, text: String, isVimeo: Bool, isMediaText: Bool) {
+    init (uid: String, image: String, text: String, isVimeo: Bool, isMediaText: Bool, status: MessageStatus) {
         self.uid = uid
         self.mediaThumbnail = image
         self.mediaText = text
         self.isVimeo = isVimeo
         self.isMediaText = isMediaText
+        self.status = status
     }
     
 }
@@ -69,8 +71,17 @@ class MediaTextMessagePresenter: ChatItemPresenterProtocol {
             return
         }
         mediaCell.containerView.layer.cornerRadius = 20.0
-        mediaCell.imageView.image = UIImage(named: self.mediaTextMessageModel.mediaThumbnail)
-        mediaCell.textLabel.text = mediaTextMessageModel.mediaText
+        
+        
+        // Convert back to image from data
+        
+        let data =  Data(base64Encoded: self.mediaTextMessageModel.mediaThumbnail as String, options: NSData.Base64DecodingOptions())
+        if let data1 = data {
+            mediaCell.imageView.image = UIImage(data: data1)
+        } else {
+            mediaCell.imageView.image = UIImage(named: self.mediaTextMessageModel.mediaThumbnail)
+        }
+        
         if self.mediaTextMessageModel.isVimeo {
             mediaCell.playButton.isHidden = false
         } else {
@@ -79,9 +90,17 @@ class MediaTextMessagePresenter: ChatItemPresenterProtocol {
         
         if mediaTextMessageModel.isMediaText {
             mediaCell.textLabel.isHidden = false
+            mediaCell.textLabel.text = mediaTextMessageModel.mediaText
+            let maskLayer = CAShapeLayer()
+            maskLayer.path = UIBezierPath(roundedRect: mediaCell.imageView.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
+            
+            mediaCell.imageView.layer.mask = maskLayer
+            mediaCell.viewForImage.layer.mask = maskLayer
         } else {
-            mediaCell.textLabel.text = ""
+//            mediaCell.textLabel.text = ""
             mediaCell.textLabel.isHidden = true
+            mediaCell.imageView.layer.cornerRadius = 20.0
+            mediaCell.viewForImage.layer.cornerRadius = 20.0
         }
     }
     
