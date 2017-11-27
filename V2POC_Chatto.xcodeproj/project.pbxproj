@@ -58,6 +58,11 @@
 		E559FB821F972EC600D9D186 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E559FB801F972EC600D9D186 /* LaunchScreen.storyboard */; };
 		E559FC891F97366B00D9D186 /* Chatto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E559FC871F97366A00D9D186 /* Chatto.framework */; };
 		E559FC8A1F97366B00D9D186 /* ChattoAdditions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E559FC881F97366A00D9D186 /* ChattoAdditions.framework */; };
+		E57E0B4F1FCBF38E00492FD6 /* MessageChatInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E0B4E1FCBF38E00492FD6 /* MessageChatInputBar.swift */; };
+		E57E0B511FCBF3A200492FD6 /* MessageChatInputBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57E0B501FCBF3A200492FD6 /* MessageChatInputBar.xib */; };
+		E57E0B531FCC09F900492FD6 /* MessageChatInputBarAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E0B521FCC09F900492FD6 /* MessageChatInputBarAppearance.swift */; };
+		E57E0B551FCC0D1100492FD6 /* MessageChatInputBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E0B541FCC0D1100492FD6 /* MessageChatInputBarPresenter.swift */; };
+		E57E0B571FCC171400492FD6 /* ExpandableMessageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E0B561FCC171400492FD6 /* ExpandableMessageTextView.swift */; };
 		E59947721FA3043E009EF294 /* FNSTextMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59947711FA3043E009EF294 /* FNSTextMessageViewModel.swift */; };
 		E59947761FA30F72009EF294 /* FNSTextMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59947751FA30F72009EF294 /* FNSTextMessageModel.swift */; };
 		E5ABF8731FA9D79B009E1855 /* GroupActivityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ABF8711FA9D79B009E1855 /* GroupActivityCollectionViewCell.swift */; };
@@ -133,6 +138,11 @@
 		E559FB831F972EC600D9D186 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E559FC871F97366A00D9D186 /* Chatto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chatto.framework; path = Carthage/Build/iOS/Chatto.framework; sourceTree = "<group>"; };
 		E559FC881F97366A00D9D186 /* ChattoAdditions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ChattoAdditions.framework; path = Carthage/Build/iOS/ChattoAdditions.framework; sourceTree = "<group>"; };
+		E57E0B4E1FCBF38E00492FD6 /* MessageChatInputBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageChatInputBar.swift; sourceTree = "<group>"; };
+		E57E0B501FCBF3A200492FD6 /* MessageChatInputBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageChatInputBar.xib; sourceTree = "<group>"; };
+		E57E0B521FCC09F900492FD6 /* MessageChatInputBarAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageChatInputBarAppearance.swift; sourceTree = "<group>"; };
+		E57E0B541FCC0D1100492FD6 /* MessageChatInputBarPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageChatInputBarPresenter.swift; sourceTree = "<group>"; };
+		E57E0B561FCC171400492FD6 /* ExpandableMessageTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableMessageTextView.swift; sourceTree = "<group>"; };
 		E59947711FA3043E009EF294 /* FNSTextMessageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FNSTextMessageViewModel.swift; sourceTree = "<group>"; };
 		E59947751FA30F72009EF294 /* FNSTextMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FNSTextMessageModel.swift; sourceTree = "<group>"; };
 		E5ABF8711FA9D79B009E1855 /* GroupActivityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupActivityCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -202,6 +212,7 @@
 		00CFEA3E1F9F5D6500DFE2DE /* MessageModule */ = {
 			isa = PBXGroup;
 			children = (
+				E57E0B4D1FCBF20A00492FD6 /* InputBar */,
 				E5074A3F1FB03FAF00FD16C4 /* MediaTextMessages */,
 				E55420E31FAC47A600452DE2 /* PhotoMessages */,
 				E55557231FAC75F200D10BD5 /* SenderTimeStamp */,
@@ -353,6 +364,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E57E0B4D1FCBF20A00492FD6 /* InputBar */ = {
+			isa = PBXGroup;
+			children = (
+				E57E0B4E1FCBF38E00492FD6 /* MessageChatInputBar.swift */,
+				E57E0B501FCBF3A200492FD6 /* MessageChatInputBar.xib */,
+				E57E0B521FCC09F900492FD6 /* MessageChatInputBarAppearance.swift */,
+				E57E0B541FCC0D1100492FD6 /* MessageChatInputBarPresenter.swift */,
+				E57E0B561FCC171400492FD6 /* ExpandableMessageTextView.swift */,
+			);
+			path = InputBar;
+			sourceTree = "<group>";
+		};
 		E5ABF8701FA9D785009E1855 /* GroupActivity */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,6 +462,7 @@
 			files = (
 				E55557271FAC761000D10BD5 /* SenderTimestampCollectionViewCell.xib in Resources */,
 				E559FB821F972EC600D9D186 /* LaunchScreen.storyboard in Resources */,
+				E57E0B511FCBF3A200492FD6 /* MessageChatInputBar.xib in Resources */,
 				E559FB7F1F972EC600D9D186 /* Assets.xcassets in Resources */,
 				E559FB7D1F972EC600D9D186 /* Main.storyboard in Resources */,
 				E5074A431FB03FC600FD16C4 /* MediaTextCollectionViewCell.xib in Resources */,
@@ -475,6 +499,7 @@
 				00CFEA4F1F9F66EA00DFE2DE /* Media+CoreDataClass.swift in Sources */,
 				00CFEA311F9DFD6600DFE2DE /* BaseMessageCollectionViewCellAvatarStyle.swift in Sources */,
 				E5074A451FB048DE00FD16C4 /* MediaTextMessageModel.swift in Sources */,
+				E57E0B571FCC171400492FD6 /* ExpandableMessageTextView.swift in Sources */,
 				00CFEA4A1F9F66A000DFE2DE /* Conversation+CoreDataProperties.swift in Sources */,
 				00CFEA211F9DEA3300DFE2DE /* DemoTextMessageViewModel.swift in Sources */,
 				00CFEA2B1F9DEF9100DFE2DE /* FakeDataSource.swift in Sources */,
@@ -482,6 +507,7 @@
 				E55420E71FAC497F00452DE2 /* FNSPhotoMessageModel.swift in Sources */,
 				00CFEA331F9E12C400DFE2DE /* ChatItemsDemoDecorator.swift in Sources */,
 				00CFEA3A1F9E133600DFE2DE /* SendingStatusPresenter.swift in Sources */,
+				E57E0B4F1FCBF38E00492FD6 /* MessageChatInputBar.swift in Sources */,
 				00CFEA1F1F9DEA3300DFE2DE /* DemoTextMessageHandler.swift in Sources */,
 				00CFEA621FA334FD00DFE2DE /* MessageSender.swift in Sources */,
 				E55420E91FAC4A2700452DE2 /* FNSPhotoMessageViewModel.swift in Sources */,
@@ -495,8 +521,10 @@
 				00CFEA4B1F9F66A000DFE2DE /* User+CoreDataClass.swift in Sources */,
 				E559FB7A1F972EC600D9D186 /* ViewController.swift in Sources */,
 				00CFEA491F9F66A000DFE2DE /* Conversation+CoreDataClass.swift in Sources */,
+				E57E0B531FCC09F900492FD6 /* MessageChatInputBarAppearance.swift in Sources */,
 				E55557261FAC761000D10BD5 /* SenderTimestampCollectionViewCell.swift in Sources */,
 				00CFEA251F9DEAD800DFE2DE /* BaseMessageHandler.swift in Sources */,
+				E57E0B551FCC0D1100492FD6 /* MessageChatInputBarPresenter.swift in Sources */,
 				00CFEA5F1FA1AFC200DFE2DE /* ConversationViewController.swift in Sources */,
 				E555572B1FAC7D3E00D10BD5 /* SenderTimestampPresenter.swift in Sources */,
 				00CFEA431F9F667900DFE2DE /* Message+CoreDataClass.swift in Sources */,

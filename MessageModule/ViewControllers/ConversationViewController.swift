@@ -1,4 +1,4 @@
-//
+n//
 //  ConversationViewController.swift
 //  V2POC_Chatto
 //
@@ -19,7 +19,7 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
     //var dataSource: MessageDataSource! // Need to replace the below FakeDataSource with this
     
     var messageSender: MessageSender!
-    var chatInputPresenter: BasicChatInputBarPresenter!
+    var chatInputPresenter: BaseMessageChatInputBarPresenter!
     var dataSource: MessageDataSource! {
         didSet {
             self.chatDataSource = self.dataSource
@@ -88,21 +88,29 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
             sectionNameKeyPath: nil,
             cacheName: nil)
         
-        self.fetchedResultsController.delegate = self
-        
-        
-        
+        self.fetchedResultsController.delegate = self 
     }
     
+    
     override func createChatInputView() -> UIView {
-        let chatInputView = ChatInputBar.loadNib()
-        var appearance = ChatInputBarAppearance()
+        let chatInputView = MessageChatInputBar.loadNib()
+        var appearance = MessageChatInputBarAppearance()
         appearance.sendButtonAppearance.title = NSLocalizedString("Send", comment: "")
-        appearance.textInputAppearance.placeholderText = NSLocalizedString("Type a message", comment: "")
-        self.chatInputPresenter = BasicChatInputBarPresenter(chatInputBar: chatInputView, chatInputItems: self.createChatInputItems(), chatInputBarAppearance: appearance)
+        appearance.textInputAppearance.placeholderText = NSLocalizedString("New Message", comment: "")
+        self.chatInputPresenter = BaseMessageChatInputBarPresenter(chatInputBar: chatInputView, chatInputItems: self.createChatInputItems(), chatInputBarAppearance: appearance)
         chatInputView.maxCharactersCount = 1000
         return chatInputView
     }
+    
+//    override func createChatInputView() -> UIView {
+//        let chatInputView = ChatInputBar.loadNib()
+//        var appearance = ChatInputBarAppearance()
+//        appearance.sendButtonAppearance.title = NSLocalizedString("Send", comment: "")
+//        appearance.textInputAppearance.placeholderText = NSLocalizedString("Type a message", comment: "")
+//        self.chatInputPresenter = BasicChatInputBarPresenter(chatInputBar: chatInputView, chatInputItems: self.createChatInputItems(), chatInputBarAppearance: appearance)
+//        chatInputView.maxCharactersCount = 1000
+//        return chatInputView
+//    }
     
     func createChatInputItems() -> [ChatInputItemProtocol] {
         var items = [ChatInputItemProtocol]()
