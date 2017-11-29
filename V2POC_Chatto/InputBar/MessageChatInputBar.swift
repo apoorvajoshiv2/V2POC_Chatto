@@ -20,21 +20,29 @@ public protocol ChatInputBarDelegate: class {
     func inputBar(_ inputBar: MessageChatInputBar, didReceiveFocusOnItem item: ChatInputItemProtocol)
 }
 
-class test: ChatInputBar {
-    
-}
-
 open class MessageChatInputBar: ReusableXibView {
 
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var textView: ExpandableMessageTextView!
+    @IBOutlet weak var textViewHeight: NSLayoutConstraint!
     
     public weak var delegate: ChatInputBarDelegate?
     weak var presenter: MessageChatInputBarPresenter?
     
     public var shouldEnableSendButton = { (inputBar: MessageChatInputBar) -> Bool in
-        return !inputBar.textView.text.isEmpty
+        var isEnabled = false
+        if let abc = inputBar.textView.text {
+            let messageText = abc.trimmingCharacters(in: .whitespacesAndNewlines)
+            if messageText.characters.count > 0 {
+                isEnabled = true
+            } else {
+                isEnabled = false
+            }
+            
+        }
+        return isEnabled
+//                return !inputBar.textView.text.isEmpty
     }
     
     class open func loadNib() -> MessageChatInputBar {
@@ -50,10 +58,8 @@ open class MessageChatInputBar: ReusableXibView {
     
     open override func awakeFromNib() {
         super.awakeFromNib()
-//        self.topBorderHeightConstraint.constant = 1 / UIScreen.main.scale
         self.textView.scrollsToTop = false
         self.textView.delegate = self
-//        self.scrollView.scrollsToTop = false
         self.sendButton.isEnabled = false
     }
     
@@ -132,26 +138,7 @@ open class MessageChatInputBar: ReusableXibView {
         self.presenter?.onSendButtonPressed()
         self.delegate?.inputBarSendButtonPressed(self)
     }
-    
-    public func setTextViewPlaceholderAccessibilityIdentifer(_ accessibilityIdentifer: String) {
-        self.textView.setTextPlaceholderAccessibilityIdentifier(accessibilityIdentifer)
-    }
 }
-
-// MARK: - ChatInputItemViewDelegate
-//extension MessageChatInputBar: ChatInputItemViewDelegate {
-//    func inputItemViewTapped(_ view: ChatInputItemView) {
-//        self.focusOnInputItem(view.inputItem)
-//    }
-//    
-//    public func focusOnInputItem(_ inputItem: ChatInputItemProtocol) {
-//        let shouldFocus = self.delegate?.inputBar(self, shouldFocusOnItem: inputItem) ?? true
-//        guard shouldFocus else { return }
-//        
-//        self.presenter?.onDidReceiveFocusOnItem(inputItem)
-//        self.delegate?.inputBar(self, didReceiveFocusOnItem: inputItem)
-//    }
-//}
 
 // MARK: - ChatInputBarAppearance
 extension MessageChatInputBar {
@@ -159,14 +146,12 @@ extension MessageChatInputBar {
         self.textView.font = appearance.textInputAppearance.font
         self.textView.textColor = appearance.textInputAppearance.textColor
         self.textView.tintColor = appearance.textInputAppearance.tintColor
-//        self.textView.textContainerInset = appearance.textInputAppearance.textInsets
         self.textView.setTextPlaceholderFont(appearance.textInputAppearance.placeholderFont)
         self.textView.setTextPlaceholderColor(appearance.textInputAppearance.placeholderColor)
         self.textView.setTextPlaceholder(appearance.textInputAppearance.placeholderText)
         self.textView.layer.borderColor = appearance.textInputAppearance.borderColor.cgColor
         self.textView.layer.cornerRadius = 2.0
         self.textView.layer.borderWidth = appearance.textInputAppearance.borderWidth
-//        self.sendButton.contentEdgeInsets = appearance.sendButtonAppearance.insets
         self.sendButton.titleLabel?.font = appearance.sendButtonAppearance.font
     }
 }
@@ -192,28 +177,5 @@ extension MessageChatInputBar: UITextViewDelegate {
         self.delegate?.inputBarDidChangeText(self)
     }
     
-    public func textView(_ textView: UITextView, shouldChangeTextIn nsRange: NSRange, replacementText text: String) -> Bool {
-        let range = self.textView.text.bma_rangeFromNSRange(nsRange)
-        if let maxCharactersCount = self.maxCharactersCount {
-            let currentCount = textView.text.characters.count
-            let rangeLength = textView.text.substring(with: range).characters.count
-            let nextCount = currentCount - rangeLength + text.characters.count
-            return UInt(nextCount) <= maxCharactersCount
-        }
-        return true
-    }
-}
-
-
-private extension String {
-    func bma_rangeFromNSRange(_ nsRange: NSRange) -> Range<String.Index> {
-        guard
-            let from16 = utf16.index(utf16.startIndex, offsetBy: nsRange.location, limitedBy: utf16.endIndex),
-            let to16 = utf16.index(from16, offsetBy: nsRange.length, limitedBy: utf16.endIndex),
-            let from = String.Index(from16, within: self),
-            let to = String.Index(to16, within: self)
-            else { return  self.startIndex..<self.startIndex }
-        return from ..< to
-    }
 }
 

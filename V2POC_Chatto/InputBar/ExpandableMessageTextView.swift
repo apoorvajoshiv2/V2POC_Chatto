@@ -45,7 +45,11 @@ open class ExpandableMessageTextView: UITextView {
     }
     
     override open var intrinsicContentSize: CGSize {
-        return self.contentSize
+        if self.contentSize.height < 150 {
+            return self.contentSize
+        } else {
+            return CGSize(width: self.contentSize.width, height: 150)
+        }
     }
     
     override open var text: String! {
