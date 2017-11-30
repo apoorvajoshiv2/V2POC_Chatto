@@ -169,6 +169,9 @@ class MessageDataSource: ChatDataSourceProtocol {
         
     }
     
+    func reuestAPI() {
+        
+    }
     
     func addPhotoMessage(image: UIImage)//, sender: String,  outgoing: Bool) {
     {
@@ -238,7 +241,7 @@ class MessageDataSource: ChatDataSourceProtocol {
     
     func createMediaMessageModel(_ uid: String, image: String, text: String, isIncoming: Bool, isVimeo: Bool, isMediaText: Bool) -> MediaTextMessageModel {
         let messageStatus = isIncoming || arc4random_uniform(100) % 3 == 0 ? MessageStatus.success : .failed
-        let mediaMessageModel = MediaTextMessageModel(uid: uid, image: image, text: text, isVimeo: isVimeo, isMediaText: isMediaText, status: messageStatus)
+        let mediaMessageModel = MediaTextMessageModel(uid: uid, image: image, text: text, isVimeo: isVimeo, isMediaText: isMediaText, status: messageStatus, isIncoming: isIncoming)
         return mediaMessageModel
     }
     

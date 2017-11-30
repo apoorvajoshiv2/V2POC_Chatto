@@ -21,14 +21,16 @@ class MediaTextMessageModel: ChatItemProtocol {
     var mediaText: String
     var isVimeo = false
     var isMediaText = false
+    var isIncoming = false
     // Temporarily I have passed only uid as parameter
-    init (uid: String, image: String, text: String, isVimeo: Bool, isMediaText: Bool, status: MessageStatus) {
+    init (uid: String, image: String, text: String, isVimeo: Bool, isMediaText: Bool, status: MessageStatus, isIncoming: Bool) {
         self.uid = uid
         self.mediaThumbnail = image
         self.mediaText = text
         self.isVimeo = isVimeo
         self.isMediaText = isMediaText
         self.status = status
+        self.isIncoming = isIncoming
     }
     
 }
@@ -52,6 +54,7 @@ public class MediaTextMessagePresenterBuilder: ChatItemPresenterBuilderProtocol 
 
 class MediaTextMessagePresenter: ChatItemPresenterProtocol {
     let mediaTextMessageModel: MediaTextMessageModel
+    var maximumWidth: CGFloat = 0.0
     init (mediaTextMessageModel: MediaTextMessageModel) {
         self.mediaTextMessageModel = mediaTextMessageModel
     }
@@ -71,7 +74,8 @@ class MediaTextMessagePresenter: ChatItemPresenterProtocol {
             return
         }
         mediaCell.containerView.layer.cornerRadius = 20.0
-        
+        mediaCell.frame.size.width = 232.0
+        mediaCell.frame.origin.x = mediaTextMessageModel.isIncoming ? mediaCell.frame.origin.x : self.maximumWidth - mediaCell.frame.size.width
         
         // Convert back to image from data
         
@@ -110,6 +114,7 @@ class MediaTextMessagePresenter: ChatItemPresenterProtocol {
     
     func heightForCell(maximumWidth width: CGFloat, decorationAttributes: ChatItemDecorationAttributesProtocol?) -> CGFloat {
         var height: CGFloat = 0.0
+        self.maximumWidth = width
         print("height",mediaTextMessageModel.mediaText.height(withConstrainedWidth: 180.0, font: UIFont.systemFont(ofSize: 12.0)))
         if mediaTextMessageModel.isMediaText {
             let heightOfLabel = mediaTextMessageModel.mediaText.height(withConstrainedWidth: 180.0, font: UIFont.systemFont(ofSize: 12.0))
@@ -119,6 +124,15 @@ class MediaTextMessagePresenter: ChatItemPresenterProtocol {
         }
         return height
     }
+    
+    func calculateLayout(photoSize: CGSize) {
+//        let photoSize = photoSize
+//        let photoFrame = CGRect(origin: CGPoint.zero, size: photoSize)
+//        let offsetX: CGFloat = 0.5 * (mediaTextMessageModel.isIncoming ? 1.0 : -1.0)
+//        self.visualCenter = photoFrame.bma_center.bma_offsetBy(dx: offsetX, dy: 0)
+//        self.size = photoSize
+    }
+
     
 }
 
