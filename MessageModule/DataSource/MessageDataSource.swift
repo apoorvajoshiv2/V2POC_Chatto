@@ -128,18 +128,18 @@ class MessageDataSource: ChatDataSourceProtocol {
             } else if message.mediaType == "media" {
                 let isIncomingMessage = arc4random_uniform(2) == 0
                 let isMediaText = arc4random_uniform(2) == 0
-                let mediaMessage: MediaTextMessageModel
+                let mediaMessage: MediaMessageModel
                 if (message.mediaUrl != nil) {
-                    mediaMessage = createMediaMessageModel(message.id!, image: message.mediaUrl!, text: message.text!, isIncoming: isIncomingMessage, isVimeo: isIncomingMessage, isMediaText: isMediaText)
+                    mediaMessage = createMediaMessageModel(messageId: message.id!, image: message.mediaUrl!, text: message.text!, isIncoming: isIncomingMessage, isVimeo: isIncomingMessage, isMediaText: isMediaText)
                 } else {
                     // Default image
-                    mediaMessage = createMediaMessageModel(message.id!, image: "pic-test-1", text: message.text!, isIncoming: isIncomingMessage, isVimeo: isIncomingMessage, isMediaText: isMediaText)
+                    mediaMessage = createMediaMessageModel(messageId: message.id!, image: "pic-test-1", text: message.text!, isIncoming: isIncomingMessage, isVimeo: isIncomingMessage, isMediaText: isMediaText)
                 }
                 
                 
-                let messageModel = createMessageModel(message.id!, isIncoming: isIncomingMessage, type: SenderTimestampModel.chatItemType)
-                let dateTimeStamp = SenderTimestampModel(uid: "\(messageModel.uid)-time-separator", date: "Sender's Name: "+messageModel.date.toWeekDayAndDateString(), senderId: messageModel.senderId)
-                self.messages.append(dateTimeStamp)
+//                let messageModel = createMessageModel(message.id!, isIncoming: isIncomingMessage, type: SenderTimestampModel.chatItemType)
+//                let dateTimeStamp = SenderTimestampModel(uid: "\(messageModel.uid)-time-separator", date: "Sender's Name: "+messageModel.date.toWeekDayAndDateString(), senderId: messageModel.senderId)
+//                self.messages.append(dateTimeStamp)
                 self.messages.append(mediaMessage)
             }
             
@@ -155,8 +155,6 @@ class MessageDataSource: ChatDataSourceProtocol {
         
         
         //        self.addCoreDataMessage(text: text, sender: sender, outgoing: outgoing, id: uid, timestamp: NSDate())
-        
-        
         self.addCoreDataMessage(text: text, imageUrl: "", mediaType: "text", sender: sender, outgoing: outgoing, id: uid, timestamp: NSDate()) { (result: String) in
             
             let message = createTextMessageModelGlobal(messageId: uid, messageText: text, messageSenderId: sender, isIncoming: !outgoing)
@@ -183,8 +181,8 @@ class MessageDataSource: ChatDataSourceProtocol {
         let outgoing = true
         self.addCoreDataMessage(text: "", imageUrl: imageUrl, mediaType: "media", sender: sender, outgoing: outgoing, id: uid, timestamp: NSDate()) { (result: String) in
             
-            let message = createMediaMessageModel(uid, image: imageUrl, text: "", isIncoming: false, isVimeo: false, isMediaText: false)
-            //            messageSender.sendMessage(message as! V2MessageModelProtocol)
+            let message = createMediaMessageModel(messageId: uid, image: imageUrl, text: "", isIncoming: false, isVimeo: false, isMediaText: false)
+            messageSender.sendMessage(message)
             self.messages.append(message)
             //            self.slidingWindow.insertItem(message, position: .bottom)
             delegate?.chatDataSourceDidUpdate(self)
@@ -239,9 +237,10 @@ class MessageDataSource: ChatDataSourceProtocol {
         return photoMessageModel
     }
     
-    func createMediaMessageModel(_ uid: String, image: String, text: String, isIncoming: Bool, isVimeo: Bool, isMediaText: Bool) -> MediaTextMessageModel {
-        let messageStatus = isIncoming || arc4random_uniform(100) % 3 == 0 ? MessageStatus.success : .failed
-        let mediaMessageModel = MediaTextMessageModel(uid: uid, image: image, text: text, isVimeo: isVimeo, isMediaText: isMediaText, status: messageStatus, isIncoming: isIncoming)
+    func createMediaMessageModel(messageId: String, image: String, text: String, isIncoming: Bool, isVimeo: Bool, isMediaText: Bool) -> MediaMessageModel {
+        let messageModel = createMessageModel(messageId, isIncoming: isIncoming, type: MediaTextMessageModel<MessageModel>.chatItemType)
+//        let messageStatus = isIncoming || arc4random_uniform(100) % 3 == 0 ? MessageStatus.success : .failed
+        let mediaMessageModel = MediaMessageModel(messageModel: messageModel, uid: messageId, image: image, text: text, isVimeo: isVimeo, isMediaText: isMediaText)
         return mediaMessageModel
     }
     

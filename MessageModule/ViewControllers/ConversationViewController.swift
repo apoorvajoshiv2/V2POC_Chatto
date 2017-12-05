@@ -148,10 +148,11 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
             incoming: UIColor(red: 117.0/255, green: 154.0/255, blue: 124.00/255, alpha: 1.0), // green background for incoming
             outgoing: UIColor(red: 48.0/255, green: 107.0/255, blue: 136.00/255, alpha: 1.0) // blue background for outgoing
         )
-        
+        let failedIconImage = BaseMessageCollectionViewCellDefaultStyle.FailedIconImages(normal: UIImage(named: "uploadFailedIcon")!, highlighted: UIImage(named: "uploadFailedIcon")!)
         // colors, bubbleBorderImages, failedIconImages, layoutConstants,dateTextStyle, avatarStyle provided in BaseMessageCollectionViewCellDefaultStyle
         // used for base message background + text background
-        let baseMessageStyle =  BaseMessageCollectionViewCellDefaultStyle(colors: chatColor)
+        let baseMessageStyle =  BaseMessageCollectionViewCellDefaultStyle(colors: chatColor, failedIconImages: failedIconImage)
+        
         let textStyle = TextMessageCollectionViewCellDefaultStyle.TextStyle(
             font: UIFont.systemFont(ofSize: 13),
             incomingColor: UIColor.white, // white text for incoming
@@ -187,7 +188,7 @@ class ConversationViewController: BaseChatViewController,NSFetchedResultsControl
 //                FNSPhotoMessageModel.chatItemType: [
 //                    photoMessagePresenter
 //            ],
-                MediaTextMessageModel.chatItemType: [
+                MediaMessageModel.chatItemType: [
                     MediaTextMessagePresenterBuilder()
             ]
         ]

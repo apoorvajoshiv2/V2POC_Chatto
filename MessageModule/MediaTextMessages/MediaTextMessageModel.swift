@@ -10,41 +10,71 @@ import Foundation
 import Chatto
 import ChattoAdditions
 
-class MediaTextMessageModel: ChatItemProtocol {
-    let uid: String
+public protocol PhotoMessageModelProtocol: DecoratedMessageModelProtocol {
+    var mediaThumbnail: String { get }
+    var mediaText: String { get }
+    var isVimeo: Bool { get }
+    var isMediaText: Bool { get }
+}
+
+open class MediaTextMessageModel<MessageModelT: MessageModelProtocol>: PhotoMessageModelProtocol {
+    public var isMediaText: Bool
+    public var isVimeo: Bool
+    public var mediaText: String
+    public var mediaThumbnail: String
+    public var messageModel: MessageModelProtocol {
+        return self._messageModel
+    }
+    public let _messageModel: MessageModelT
+    public let uid: String
     static var chatItemType: ChatItemType {
         return "mediaText"
     }
-    var status: MessageStatus
-    var type: ChatItemType = MediaTextMessageModel.chatItemType
-    var mediaThumbnail: String
-    var mediaText: String
-    var isVimeo = false
-    var isMediaText = false
-    var isIncoming = false
-    // Temporarily I have passed only uid as parameter
-    init (uid: String, image: String, text: String, isVimeo: Bool, isMediaText: Bool, status: MessageStatus, isIncoming: Bool) {
+//    public var status: MessageStatus
+    public var type: ChatItemType = MediaTextMessageModel.chatItemType
+    
+    public init (messageModel: MessageModelT, uid: String, image: String, text: String, isVimeo: Bool, isMediaText: Bool) {
+        self._messageModel = messageModel
         self.uid = uid
         self.mediaThumbnail = image
         self.mediaText = text
         self.isVimeo = isVimeo
         self.isMediaText = isMediaText
-        self.status = status
-        self.isIncoming = isIncoming
     }
-    
 }
 
-public class MediaTextMessagePresenterBuilder: ChatItemPresenterBuilderProtocol {
+public class MediaMessageModel: MediaTextMessageModel<MessageModel>, V2MessageModelProtocol {
+    public var date = Date()
+
+    public var senderId = "1"
+
+    public override init(messageModel: MessageModel, uid: String, image: String, text: String, isVimeo: Bool, isMediaText: Bool) {
+        super.init(messageModel: messageModel, uid: uid, image: image, text: text, isVimeo: isVimeo, isMediaText: isMediaText)
+    }
     
+    public var status: MessageStatus {
+        get {
+            return self._messageModel.status
+        }
+        set {
+            self._messageModel.status = newValue
+        }
+    }
+}
+
+//class MediaViewMessageModel: ChatItemProtocol {
+//        
+//}
+
+public class MediaTextMessagePresenterBuilder: ChatItemPresenterBuilderProtocol {
+    public lazy var baseCellStyle: BaseMessageCollectionViewCellStyleProtocol = BaseMessageCollectionViewCellDefaultStyle()
     public func canHandleChatItem(_ chatItem: ChatItemProtocol) -> Bool {
-        return chatItem is MediaTextMessageModel
+        return chatItem is MediaMessageModel
     }
     
     public func createPresenterWithChatItem(_ chatItem: ChatItemProtocol) -> ChatItemPresenterProtocol {
         assert(self.canHandleChatItem(chatItem))
-        
-        return MediaTextMessagePresenter(mediaTextMessageModel: chatItem as! MediaTextMessageModel)
+        return MediaTextMessagePresenter(mediaTextMessageModel: chatItem as! MediaMessageModel, baseCellStyle: baseCellStyle)
     }
     
     public var presenterType: ChatItemPresenterProtocol.Type {
@@ -53,10 +83,23 @@ public class MediaTextMessagePresenterBuilder: ChatItemPresenterBuilderProtocol 
 }
 
 class MediaTextMessagePresenter: ChatItemPresenterProtocol {
-    let mediaTextMessageModel: MediaTextMessageModel
+    let mediaTextMessageModel: MediaMessageModel
+    let cellStyle: BaseMessageCollectionViewCellStyleProtocol
     var maximumWidth: CGFloat = 0.0
-    init (mediaTextMessageModel: MediaTextMessageModel) {
+    
+    public private(set) lazy var failedButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.addTarget(self, action: #selector(failedButtonTapped(_:)), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func failedButtonTapped(_ sender: UIButton) {
+        print("Fail icon tapped")
+    }
+    
+    init (mediaTextMessageModel: MediaMessageModel, baseCellStyle: BaseMessageCollectionViewCellStyleProtocol) {
         self.mediaTextMessageModel = mediaTextMessageModel
+        cellStyle = baseCellStyle
     }
     
     static func registerCells(_ collectionView: UICollectionView) {
@@ -74,8 +117,7 @@ class MediaTextMessagePresenter: ChatItemPresenterProtocol {
             return
         }
         mediaCell.containerView.layer.cornerRadius = 20.0
-        mediaCell.frame.size.width = 232.0
-        mediaCell.frame.origin.x = mediaTextMessageModel.isIncoming ? mediaCell.frame.origin.x : self.maximumWidth - mediaCell.frame.size.width
+        
         
         // Convert back to image from data
         
@@ -92,6 +134,17 @@ class MediaTextMessagePresenter: ChatItemPresenterProtocol {
             mediaCell.playButton.isHidden = true
         }
         
+        print("status of message",mediaTextMessageModel.status)
+        if mediaTextMessageModel.isIncoming == true || (mediaTextMessageModel.isIncoming == false && mediaTextMessageModel.status != MessageStatus.failed) {
+            mediaCell.failedButtonWidthConstraint.constant = 0
+            mediaCell.uploadingFailedButton.isHidden = true
+            mediaCell.frame.size.width = 232.0
+        } else {
+            mediaCell.uploadingFailedButton.isHidden = false
+            mediaCell.failedButtonWidthConstraint.constant = 44
+            mediaCell.frame.size.width = 276.0
+        }
+        mediaCell.frame.origin.x = mediaTextMessageModel.isIncoming ? mediaCell.frame.origin.x : self.maximumWidth - mediaCell.frame.size.width
         if mediaTextMessageModel.isMediaText {
             mediaCell.textLabel.isHidden = false
             mediaCell.textLabel.text = mediaTextMessageModel.mediaText
